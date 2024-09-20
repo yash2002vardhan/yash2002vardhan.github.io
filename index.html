@@ -1,1 +1,111 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yashvardhan Goel - Portfolio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.5s, color 0.5s;
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+    .light-mode {
+      background-color: #ffffff;
+      color: #121212;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 1rem;
+      color: #f1f1f1;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: #f1f1f1;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      display: flex;
+      height: 90vh;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .right {
+      padding: 20px;
+    }
+    .theme-switch {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #333;
+      color: #f1f1f1;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="light-mode">
+
+  <nav>
+    <div class="menu-bar">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">About Me</a></li>
+        <li><a href="#">Contact Me</a></li>
+      </ul>
+    </div>
+    <button class="theme-switch" onclick="switchTheme()">Toggle Theme</button>
+  </nav>
+
+  <div class="container">
+    <div class="right">
+      <h1>Hello, I'm Yashvardhan Goel</h1>
+      <p>I'm a 5th-year student pursuing an M.Sc. in Biological Sciences and B.E. in Manufacturing Engineering. Welcome to my personal portfolio where you can learn more about my projects, skills, and experience!</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2024 Yashvardhan Goel. All rights reserved.
+  </footer>
+
+  <script>
+    function switchTheme() {
+      const body = document.body;
+      if (body.classList.contains("light-mode")) {
+        body.classList.remove("light-mode");
+        body.classList.add("dark-mode");
+      } else {
+        body.classList.remove("dark-mode");
+        body.classList.add("light-mode");
+      }
+    }
+  </script>
+
+</body>
+</html>
