@@ -4,20 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yashvardhan Goel - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
       transition: background-color 0.5s, color 0.5s;
     }
     .dark-mode {
-      background-color: #121212;
-      color: #f1f1f1;
+      background-color: #1e1e1e;
+      color: #e0e0e0;
     }
     .light-mode {
       background-color: #ffffff;
-      color: #121212;
+      color: #333;
     }
     nav {
       display: flex;
@@ -26,6 +27,7 @@
       background-color: #333;
       padding: 1rem;
       color: #f1f1f1;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     nav ul {
       display: flex;
@@ -34,29 +36,51 @@
       padding: 0;
     }
     nav ul li {
-      margin: 0 15px;
+      margin: 0 20px;
     }
     nav ul li a {
       color: #f1f1f1;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #FFD700; /* Gold accent for hover effect */
     }
     .container {
       display: flex;
-      height: 90vh;
+      height: calc(100vh - 80px);
       align-items: center;
       justify-content: center;
       padding: 20px;
+      background-color: #f4f4f4;
+    }
+    .dark-mode .container {
+      background-color: #2b2b2b;
     }
     .right {
-      padding: 20px;
+      padding: 40px;
+      max-width: 600px;
+      text-align: center;
+    }
+    .right h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .right p {
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
     .theme-switch {
       background: none;
       border: none;
-      font-size: 24px;
+      font-size: 28px;
       cursor: pointer;
       color: white;
+      transition: transform 0.3s;
+    }
+    .theme-switch:hover {
+      transform: rotate(20deg);
     }
     footer {
       text-align: center;
@@ -66,6 +90,18 @@
       position: fixed;
       bottom: 0;
       width: 100%;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      nav ul li {
+        margin: 0 10px;
+      }
+      .right h1 {
+        font-size: 2rem;
+      }
+      .right p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
