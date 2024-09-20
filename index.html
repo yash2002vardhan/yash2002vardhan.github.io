@@ -54,9 +54,9 @@
     .theme-switch {
       background: none;
       border: none;
-      color: white;
-      font-size: 16px;
+      font-size: 24px;
       cursor: pointer;
+      color: white;
     }
     footer {
       text-align: center;
@@ -80,7 +80,7 @@
         <li><a href="#">Contact Me</a></li>
       </ul>
     </div>
-    <button class="theme-switch" onclick="switchTheme()">Toggle Theme</button>
+    <button class="theme-switch" onclick="switchTheme()">🌙</button>
   </nav>
 
   <div class="container">
@@ -97,12 +97,16 @@
   <script>
     function switchTheme() {
       const body = document.body;
+      const themeSwitch = document.querySelector('.theme-switch');
+      
       if (body.classList.contains("light-mode")) {
         body.classList.remove("light-mode");
         body.classList.add("dark-mode");
+        themeSwitch.textContent = "☀️";  // Sun emoji for light theme
       } else {
         body.classList.remove("dark-mode");
         body.classList.add("light-mode");
+        themeSwitch.textContent = "🌙";  // Moon emoji for dark theme
       }
     }
   </script>
