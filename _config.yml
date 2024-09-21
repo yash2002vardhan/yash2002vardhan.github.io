@@ -1,6 +1,6 @@
 title: Yashvardhan Goel Portfolio
 description: Personal portfolio to showcase my projects, experience, and skills.
 baseurl: "" # If using GitHub Pages, leave this empty
-url: "https://username.github.io" # Replace with your GitHub Pages URL
+url: "https://yash2002vardhan.github.io" # Replace with your GitHub Pages URL
 markdown: kramdown
 theme: minima # Or you can remove this if you have custom layouts and styles
