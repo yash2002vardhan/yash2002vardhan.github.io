@@ -7,10 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/main.css">
 </head>
-<body>
+<body class="light-mode">
+  <!-- Top Navigation Bar -->
   <header class="site-header">
     <nav class="site-nav">
-      <ul>
+      <ul class="nav-list">
         <li><a class="page-link" href="/">Home</a></li>
         <li><a class="page-link" href="/about/">About</a></li>
         <li><a class="page-link" href="/projects/">Projects</a></li>
@@ -18,8 +19,10 @@
         <li><a class="page-link" href="/contact/">Contact</a></li>
       </ul>
     </nav>
+    <button class="theme-switcher" onclick="toggleTheme()">🌙</button> <!-- Toggle theme button -->
   </header>
 
+  <!-- Main Content -->
   <main class="page-content wrapper">
     <h1 id="about-me">About Me</h1>
 
@@ -29,8 +32,26 @@
 
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <p>&copy; 2024 Yashvardhan Goel. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Theme toggle functionality
+    function toggleTheme() {
+      const body = document.body;
+      const themeSwitcher = document.querySelector('.theme-switcher');
+      if (body.classList.contains('light-mode')) {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+        themeSwitcher.textContent = '☀️'; // Sun emoji for light mode
+      } else {
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+        themeSwitcher.textContent = '🌙'; // Moon emoji for dark mode
+      }
+    }
+  </script>
 </body>
 </html>
