@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav">
+      <ul>
+        <li><a class="page-link" href="{{ '/' | relative_url }}">Home</a></li>
+        <li><a class="page-link" href="{{ '/about/' | relative_url }}">About</a></li>
+        <li><a class="page-link" href="{{ '/projects/' | relative_url }}">Projects</a></li>
+        <li><a class="page-link" href="{{ '/experience/' | relative_url }}">Experience</a></li>
+        <li><a class="page-link" href="{{ '/contact/' | relative_url }}">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page-content wrapper">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2024 Yashvardhan Goel. All rights reserved.</p>
+  </footer>
+</body>
+</html>
