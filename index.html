@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Yashvardhan Goel - AI/ML Engineer specializing in Machine Learning, NLP, and Deep Learning">
+    <meta name="keywords" content="AI, ML, Machine Learning, Deep Learning, NLP, Python, Software Engineer">
+    <meta name="author" content="Yashvardhan Goel">
+
+    <title>Yashvardhan Goel | AI/ML Engineer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Cursor Glow Effect -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-text">YG</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#achievements" class="nav-link">Achievements</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-grid"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="greeting">Hi, I'm</span>
+                <span class="name">Yashvardhan Goel</span>
+            </h1>
+            <div class="hero-subtitle">
+                <span class="typing-text" id="typingText"></span>
+                <span class="cursor">|</span>
+            </div>
+            <p class="hero-description">
+                Building intelligent systems that bridge the gap between research and real-world applications.
+                Currently crafting AI solutions at <span class="highlight">Mira, Aroha Labs</span>.
+            </p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary">
+                    <span>Get in Touch</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#projects" class="btn btn-secondary">
+                    <span>View Projects</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-cards" id="floatingCards">
+                <!-- Cards will be dynamically generated -->
+            </div>
+        </div>
+        <a href="#about" class="scroll-indicator">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Me</span>
+                <h2 class="section-title">Turning Complex Problems into Elegant Solutions</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-intro">
+                        I'm an <span class="highlight">AI/ML Engineer</span> with a unique blend of biological sciences
+                        and manufacturing engineering background from <span class="highlight">BITS Pilani</span>.
+                        This interdisciplinary education gives me a distinctive perspective on solving complex problems.
+                    </p>
+                    <p>
+                        My journey started in research at the intersection of <span class="highlight">biology, material science, and AI/ML</span>—working
+                        on computational discovery of battery materials and mining biological literature using NLP and deep learning.
+                    </p>
+                    <p>
+                        From there, I gained industry experience across diverse domains: <span class="highlight">healthcare</span> (breast cancer
+                        classification at APS Labs), <span class="highlight">digital advertising</span> (optimizing ad engagement at Rocketium),
+                        and <span class="highlight">FMCG</span> at <span class="highlight">Hindustan Unilever Ltd.</span> where I collaborated
+                        with Deloitte consultants on ML-driven process optimization. Currently at <span class="highlight">Mira, Aroha Labs</span>,
+                        I build AI backends powering intelligent chatbots with LangChain, vector databases, and RAG systems.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <strong>Dual Degree</strong>
+                                <span>M.Sc. Bio + B.E. Manufacturing</span>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-globe"></i>
+                            <div>
+                                <strong>International Experience</strong>
+                                <span>Singapore & Taiwan Research</span>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-award"></i>
+                            <div>
+                                <strong>Research Fellow</strong>
+                                <span>SPARKLE & TEEP Scholar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-skills">
+                    <h3>Technical Arsenal</h3>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4><i class="fas fa-code"></i> Languages & Frameworks</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">FastAPI</span>
+                                <span class="skill-tag">LangChain</span>
+                                <span class="skill-tag">PyTorch</span>
+                                <span class="skill-tag">TensorFlow</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4><i class="fas fa-brain"></i> AI/ML</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">NLP</span>
+                                <span class="skill-tag">Deep Learning</span>
+                                <span class="skill-tag">Computer Vision</span>
+                                <span class="skill-tag">RAG Systems</span>
+                                <span class="skill-tag">LLMs</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4><i class="fas fa-server"></i> Infrastructure</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">AWS</span>
+                                <span class="skill-tag">GitHub Actions</span>
+                                <span class="skill-tag">Nginx</span>
+                                <span class="skill-tag">Redis</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4><i class="fas fa-database"></i> Databases</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Milvus</span>
+                                <span class="skill-tag">Pinecone</span>
+                                <span class="skill-tag">FAISS</span>
+                                <span class="skill-tag">PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Career Journey</span>
+                <h2 class="section-title">Where I've Made an Impact</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-title">
+                                <h3>SDE-1 AI/ML</h3>
+                                <span class="company">Mira, Aroha Labs</span>
+                            </div>
+                            <div class="timeline-meta">
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Singapore</span>
+                                <span class="date"><i class="fas fa-calendar"></i> Nov 2025 - Present</span>
+                            </div>
+                        </div>
+                        <ul class="timeline-points">
+                            <li>Spearheading AI backend for Delphi Intelligence's chatbot using <strong>LangChain</strong>, <strong>Milvus</strong>, and hybrid-retrieval</li>
+                            <li>Implementing advanced memory systems and intelligent routing for superfast, context-aware responses</li>
+                            <li>Architecting scalable solutions handling diverse article databases</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span>LangChain</span>
+                            <span>Milvus</span>
+                            <span>RAG</span>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-title">
+                                <h3>AI Engineer Intern</h3>
+                                <span class="company">Mira, Aroha Labs</span>
+                            </div>
+                            <div class="timeline-meta">
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Singapore</span>
+                                <span class="date"><i class="fas fa-calendar"></i> May 2024 - Oct 2025</span>
+                            </div>
+                        </div>
+                        <ul class="timeline-points">
+                            <li>Built CI/CD pipelines with <strong>GitHub Actions</strong> to publish Docker images to GHCR and deploy on <strong>AWS Fargate</strong></li>
+                            <li>Pioneered <strong>Mira Flows</strong>, a plug-and-play AI platform with <strong>5,000+ users</strong> using microservice architecture</li>
+                            <li>Built Web3 security agent leveraging GoPlus APIs with <strong>Model Context Protocol (MCP)</strong> for real-time security intelligence</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span>CI/CD</span>
+                            <span>AWS</span>
+                            <span>Docker</span>
+                            <span>MCP</span>
+                            <span>Web3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-title">
+                                <h3>Machine Learning Intern</h3>
+                                <span class="company">Rocketium, Mycelium Technologies</span>
+                            </div>
+                            <div class="timeline-meta">
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Bengaluru, India</span>
+                                <span class="date"><i class="fas fa-calendar"></i> Jan 2024 - Apr 2024</span>
+                            </div>
+                        </div>
+                        <ul class="timeline-points">
+                            <li>Developed fine-tuned <strong>U2-Net</strong> model for analyzing digital ads achieving <strong>50% increase</strong> in engagement</li>
+                            <li>Conducted comparative analysis of <strong>Azure, AWS Rekognition and Google Vision</strong> for image tagging</li>
+                            <li>Boosted user engagement by <strong>50%</strong> by optimizing ad strategies with fine-tuned <strong>ChatGPT</strong> and <strong>LlamaIndex</strong></li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span>U2-Net</span>
+                            <span>LlamaIndex</span>
+                            <span>Computer Vision</span>
+                            <span>Ad-Tech</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-title">
+                                <h3>Machine Learning Intern</h3>
+                                <span class="company">Hindustan Unilever Ltd. (HUL)</span>
+                            </div>
+                            <div class="timeline-meta">
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Assam, India</span>
+                                <span class="date"><i class="fas fa-calendar"></i> May 2023 - Jul 2023</span>
+                            </div>
+                        </div>
+                        <ul class="timeline-points">
+                            <li>Collaborated with a <strong>'Big Four'</strong> firm on ML-driven labor allocation, <strong>saving 1.5 hours daily</strong></li>
+                            <li>Employed <strong>GBM regressor</strong> for quality checks, reducing BCT by 20 minutes and <strong>boosting production by 50%</strong></li>
+                            <li>Spearheaded ML model for energy sustainability aimed at <strong>reducing carbon footprint</strong></li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span>GBM</span>
+                            <span>Process Optimization</span>
+                            <span>Sustainability</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-title">
+                                <h3>Machine Learning Intern</h3>
+                                <span class="company">APS Labs, Part of APS Lifetech</span>
+                            </div>
+                            <div class="timeline-meta">
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Pune, India</span>
+                                <span class="date"><i class="fas fa-calendar"></i> May 2022 - Jul 2022</span>
+                            </div>
+                        </div>
+                        <ul class="timeline-points">
+                            <li>Leveraged ML and image processing to develop <strong>breast cancer classification</strong> system using mammograms</li>
+                            <li>Evaluated multiple models, concluded <strong>SVM outperformed</strong> others with <strong>95% accuracy</strong></li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span>Healthcare AI</span>
+                            <span>Image Processing</span>
+                            <span>SVM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Highlighted Projects</span>
+                <h2 class="section-title">A Few Things I've Built</h2>
+            </div>
+            <div class="projects-grid">
+                <article class="project-card" data-aos="fade-up">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="https://github.com/yash2002vardhan/pokebase" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-date">May 2025 - Jun 2025</span>
+                            <span class="project-type">Personal Project</span>
+                        </div>
+                        <h3 class="project-title">Pokebase MCP Server</h3>
+                        <p class="project-description">
+                            MCP server integrating Gemini 2.0 and PokeAPI for Claude Desktop with async HTTP client
+                            processing 1000+ Pokemon and intelligent battle strategy generation.
+                        </p>
+                        <div class="project-tags">
+                            <span>MCP</span>
+                            <span>Gemini 2.0</span>
+                            <span>aiohttp</span>
+                            <span>NLP</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card" data-aos="fade-up">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="https://github.com/yash2002vardhan/DermaGPT" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-date">Mar 2025</span>
+                            <span class="project-type">Personal Project</span>
+                        </div>
+                        <h3 class="project-title">DermaGPT</h3>
+                        <p class="project-description">
+                            RAG chatbot with LangChain, GPT-4, and FAISS/Pinecone for precise skincare product recommendations.
+                            Features dynamic chunking and real-time search integration.
+                        </p>
+                        <div class="project-tags">
+                            <span>LangChain</span>
+                            <span>GPT-4</span>
+                            <span>FAISS</span>
+                            <span>Streamlit</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card" data-aos="fade-up">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <i class="fas fa-battery-full"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-date">May 2023 - May 2024</span>
+                            <span class="project-type">Research</span>
+                        </div>
+                        <h3 class="project-title">Computational Discovery of Battery Materials</h3>
+                        <p class="project-description">
+                            Adapted deep learning frameworks to predict chemical compound properties with 90% accuracy.
+                            Built BERT-based text extraction tool and employed hierarchical GNNs for novel material discovery.
+                        </p>
+                        <div class="project-tags">
+                            <span>BERT</span>
+                            <span>GNN</span>
+                            <span>Deep Learning</span>
+                            <span>Materials Science</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card" data-aos="fade-up">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-date">Mar 2023 - Dec 2023</span>
+                            <span class="project-type">Research</span>
+                        </div>
+                        <h3 class="project-title">Tool for Mining Biological Literature</h3>
+                        <p class="project-description">
+                            Extracted research papers featuring rice-associated genes using NLP and PubMed's API.
+                            Designed a database-driven website to catalog genes and their isolation methods.
+                        </p>
+                        <div class="project-tags">
+                            <span>NLP</span>
+                            <span>BERT</span>
+                            <span>PubMed API</span>
+                            <span>Bioinformatics</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Recognition</span>
+                <h2 class="section-title">Achievements & Certifications</h2>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card highlight" data-aos="fade-up">
+                    <div class="achievement-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>TEEP Scholar</h3>
+                        <p class="achievement-org">Ministry of Education, Taiwan</p>
+                        <p class="achievement-date">Sep 2025 - Nov 2025</p>
+                        <p class="achievement-desc">
+                            Selected for Taiwan Experience Education Program for research on predicting time-series voltage
+                            of MFC's using hybrid LSTM-GRU models under Prof. Wang Chin-Tsan.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="achievement-card highlight" data-aos="fade-up">
+                    <div class="achievement-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>SPARKLE Research Fellow</h3>
+                        <p class="achievement-org">Let's Rewire EV Battery Charging</p>
+                        <p class="achievement-date">Oct 2023 - May 2025</p>
+                        <p class="achievement-desc">
+                            Received INR 2 Lakh grant to pursue research on ML-based EV battery charging optimization.
+                            Led a 10-member team for experiments and model development.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="achievement-card" data-aos="fade-up">
+                    <div class="achievement-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>PRMO Scholar</h3>
+                        <p class="achievement-org">Pre-Regional Mathematics Olympiad</p>
+                        <p class="achievement-date">Oct 2018</p>
+                        <p class="achievement-desc">
+                            One of 200 students from Delhi Region who qualified for Regional Mathematics Olympiad (RMO).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="achievement-card" data-aos="fade-up">
+                    <div class="achievement-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>Man of the Match</h3>
+                        <p class="achievement-org">Cult Sports Fest 2024</p>
+                        <p class="achievement-date">Apr 2024</p>
+                        <p class="achievement-desc">
+                            Won the award for scoring a hat trick in the Rocketium football tournament.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certifications">
+                <h3 class="certifications-title">Certifications</h3>
+                <div class="certifications-grid">
+                    <div class="cert-card" data-aos="fade-up">
+                        <i class="fas fa-microchip"></i>
+                        <div>
+                            <h4>AI and Edge Computing</h4>
+                            <p>L&T Edutech - Apr 2024</p>
+                        </div>
+                    </div>
+                    <div class="cert-card" data-aos="fade-up">
+                        <i class="fab fa-kaggle"></i>
+                        <div>
+                            <h4>Intermediate Machine Learning</h4>
+                            <p>Kaggle - Aug 2022</p>
+                        </div>
+                    </div>
+                    <div class="cert-card" data-aos="fade-up">
+                        <i class="fab fa-kaggle"></i>
+                        <div>
+                            <h4>Intro to Machine Learning</h4>
+                            <p>Kaggle - Aug 2022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Get in Touch</span>
+                <h2 class="section-title">Let's Build Something Amazing Together</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p class="contact-intro">
+                        I'm always open to discussing new opportunities, interesting projects, or potential collaborations.
+                        Whether you have a question or just want to say hi, feel free to reach out!
+                    </p>
+                    <div class="social-links">
+                        <a href="https://github.com/yash2002vardhan" target="_blank" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/yashvardhangoel02/" target="_blank" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://x.com/goel_2002yash" target="_blank" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-cta">
+                    <a href="mailto:f20201377p@alumni.bits-pilani.ac.in" class="btn btn-primary btn-large">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Send Me an Email</span>
+                    </a>
+                    <a href="https://drive.google.com/file/d/1cf6fod2IHPbD2XigMPbmxLf73DXzkMak/view?usp=sharing" target="_blank" class="btn btn-secondary btn-large">
+                        <i class="fas fa-download"></i>
+                        <span>Download Resume</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">YG</span>
+                    <p>Building the future with AI, one model at a time.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Yashvardhan Goel. All rights reserved.</p>
+                <p class="footer-credit">Designed & Built with <span class="heart">&hearts;</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
