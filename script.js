@@ -6,102 +6,16 @@ document.addEventListener('mousemove', (e) => {
     cursorGlow.style.top = e.clientY + 'px';
 });
 
-// ===== Dynamic Floating Cards =====
-const floatingSkills = [
-    { icon: 'fa-brain', label: 'Deep Learning' },
-    { icon: 'fa-robot', label: 'AI Systems' },
-    { icon: 'fa-database', label: 'Vector DBs' },
-    { icon: 'fa-code', label: 'Python' },
-    { icon: 'fa-sitemap', label: 'RAG Systems' },
-    { icon: 'fa-microchip', label: 'LLMs' },
-    { icon: 'fa-cloud', label: 'AWS' },
-    { icon: 'fa-cube', label: 'Docker' },
-    { icon: 'fa-code-branch', label: 'Git' },
-    { icon: 'fa-server', label: 'FastAPI' },
-    { icon: 'fa-fire', label: 'PyTorch' },
-    { icon: 'fa-language', label: 'NLP' },
-    { icon: 'fa-eye', label: 'Computer Vision' },
-    { icon: 'fa-link', label: 'LangChain' },
-    { icon: 'fa-cubes', label: 'Microservices' },
-    { icon: 'fa-cogs', label: 'CI/CD' },
-    { icon: 'fa-layer-group', label: 'TensorFlow' },
-    { icon: 'fa-project-diagram', label: 'GNNs' },
-    { icon: 'fa-comments', label: 'Chatbots' },
-    { icon: 'fa-shield-alt', label: 'Web3 Security' }
-];
+// ===== Transformer Diagram Parallax =====
+const transformerDiagram = document.getElementById('transformerDiagram');
 
-const NUM_CARDS = 5;
-
-function shuffleArray(array) {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-}
-
-// Pre-defined zones to ensure no overlap - each zone is exclusive
-const cardZones = [
-    { top: '2%', left: '5%' },
-    { top: '8%', right: '8%' },
-    { top: '45%', left: '2%' },
-    { top: '50%', right: '3%' },
-    { bottom: '8%', left: '15%' },
-];
-
-function generateFloatingCards() {
-    const container = document.getElementById('floatingCards');
-    if (!container) return;
-
-    const shuffledSkills = shuffleArray(floatingSkills);
-    const shuffledZones = shuffleArray(cardZones);
-    const selectedSkills = shuffledSkills.slice(0, NUM_CARDS);
-
-    container.innerHTML = '';
-
-    selectedSkills.forEach((skill, index) => {
-        const zone = shuffledZones[index];
-
-        const card = document.createElement('div');
-        card.className = `float-card`;
-        card.style.position = 'absolute';
-
-        // Apply zone position
-        if (zone.top) card.style.top = zone.top;
-        if (zone.bottom) card.style.bottom = zone.bottom;
-        if (zone.left) card.style.left = zone.left;
-        if (zone.right) card.style.right = zone.right;
-
-        // Random animation delay for varied floating
-        card.style.animationDelay = `${Math.random() * 4}s`;
-
-        card.innerHTML = `
-            <i class="fas ${skill.icon}"></i>
-            <span>${skill.label}</span>
-        `;
-
-        container.appendChild(card);
+if (transformerDiagram) {
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 8;
+        const y = (e.clientY / window.innerHeight - 0.5) * 8;
+        transformerDiagram.style.transform = `translate(${x}px, ${y}px)`;
     });
 }
-
-// Generate cards on page load
-generateFloatingCards();
-
-// Regenerate cards every 10 seconds for dynamic effect
-setInterval(() => {
-    const container = document.getElementById('floatingCards');
-    if (!container) return;
-
-    // Fade out
-    container.style.opacity = '0';
-    container.style.transition = 'opacity 0.5s ease';
-
-    setTimeout(() => {
-        generateFloatingCards();
-        container.style.opacity = '1';
-    }, 500);
-}, 10000);
 
 // ===== Theme Toggle =====
 const themeToggle = document.getElementById('themeToggle');
@@ -368,20 +282,6 @@ timelineItems.forEach(item => {
     timelineObserver.observe(item);
 });
 
-// ===== Floating Cards Animation Enhancement =====
-const floatCards = document.querySelectorAll('.float-card');
-
-floatCards.forEach((card, index) => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-30px) scale(1.05)';
-        this.style.boxShadow = '0 20px 40px rgba(99, 102, 241, 0.3)';
-    });
-
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = '';
-        this.style.boxShadow = '';
-    });
-});
 
 // ===== Page Load Animation =====
 window.addEventListener('load', () => {

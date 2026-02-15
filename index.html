@@ -76,8 +76,195 @@
             </div>
         </div>
         <div class="hero-visual">
-            <div class="floating-cards" id="floatingCards">
-                <!-- Cards will be dynamically generated -->
+            <div class="transformer-diagram" id="transformerDiagram">
+                <svg class="transformer-svg" viewBox="0 0 440 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="encGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#6366f1"/>
+                            <stop offset="100%" stop-color="#8b5cf6"/>
+                        </linearGradient>
+                        <linearGradient id="decGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#8b5cf6"/>
+                            <stop offset="100%" stop-color="#a855f7"/>
+                        </linearGradient>
+                        <filter id="particleGlow" x="-200%" y="-200%" width="500%" height="500%">
+                            <feGaussianBlur stdDeviation="4" result="blur"/>
+                            <feMerge>
+                                <feMergeNode in="blur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                            <path d="M0,0 L8,3 L0,6Z" fill="#8b5cf6" opacity="0.6"/>
+                        </marker>
+                        <marker id="arrowUp" markerWidth="6" markerHeight="8" refX="3" refY="0" orient="auto">
+                            <path d="M0,8 L3,0 L6,8Z" fill="#a855f7" opacity="0.6"/>
+                        </marker>
+                        <path id="encPath" d="M105,536 L105,324"/>
+                        <path id="decPath" d="M335,536 L335,140"/>
+                        <path id="crossPath" d="M180,336 C220,336 240,380 260,380"/>
+                    </defs>
+
+                    <!-- Subtle background glow -->
+                    <ellipse cx="220" cy="420" rx="180" ry="220" fill="url(#encGrad)" opacity="0.04"/>
+
+                    <!-- Connection lines -->
+                    <g class="tf-connections">
+                        <line x1="105" y1="524" x2="105" y2="514" class="tf-conn"/>
+                        <line x1="105" y1="494" x2="105" y2="480" class="tf-conn"/>
+                        <line x1="105" y1="440" x2="105" y2="432" class="tf-conn"/>
+                        <line x1="105" y1="408" x2="105" y2="396" class="tf-conn"/>
+                        <line x1="105" y1="356" x2="105" y2="348" class="tf-conn"/>
+                        <line x1="335" y1="524" x2="335" y2="514" class="tf-conn"/>
+                        <line x1="335" y1="494" x2="335" y2="484" class="tf-conn"/>
+                        <line x1="335" y1="444" x2="335" y2="436" class="tf-conn"/>
+                        <line x1="335" y1="412" x2="335" y2="400" class="tf-conn"/>
+                        <line x1="335" y1="360" x2="335" y2="352" class="tf-conn"/>
+                        <line x1="335" y1="328" x2="335" y2="316" class="tf-conn"/>
+                        <line x1="335" y1="276" x2="335" y2="268" class="tf-conn"/>
+                        <line x1="335" y1="244" x2="335" y2="228" class="tf-conn"/>
+                        <line x1="335" y1="198" x2="335" y2="182" class="tf-conn"/>
+                        <line x1="335" y1="152" x2="335" y2="136" class="tf-conn" marker-end="url(#arrowUp)"/>
+                    </g>
+
+                    <!-- Cross-attention arrow -->
+                    <path d="M180,336 C220,336 240,380 260,380" class="tf-cross-attn" marker-end="url(#arrow)"/>
+
+                    <!-- Skip connections (residual) -->
+                    <path d="M180,480 C196,480 196,432 180,432" class="tf-skip"/>
+                    <path d="M180,396 C196,396 196,348 180,348" class="tf-skip"/>
+                    <path d="M410,484 C426,484 426,436 410,436" class="tf-skip"/>
+                    <path d="M410,400 C426,400 426,352 410,352" class="tf-skip"/>
+                    <path d="M410,316 C426,316 426,268 410,268" class="tf-skip"/>
+
+                    <!-- Nx brackets -->
+                    <path d="M24,480 L16,480 L16,324 L24,324" class="tf-bracket"/>
+                    <text x="8" y="402" class="tf-nx" transform="rotate(-90,8,402)">Nx</text>
+                    <path d="M416,484 L424,484 L424,244 L416,244" class="tf-bracket"/>
+                    <text x="432" y="364" class="tf-nx" transform="rotate(90,432,364)">Nx</text>
+
+                    <!-- ENCODER BLOCKS -->
+                    <g class="tf-encoder">
+                        <g class="tf-block tf-embed">
+                            <rect x="30" y="524" width="150" height="30" rx="6"/>
+                            <text x="105" y="543" text-anchor="middle">Input Embedding</text>
+                        </g>
+                        <g class="tf-pos-enc">
+                            <circle cx="105" cy="504" r="10"/>
+                            <line x1="100" y1="504" x2="110" y2="504"/>
+                            <line x1="105" y1="499" x2="105" y2="509"/>
+                        </g>
+                        <g class="tf-block tf-attention">
+                            <rect x="30" y="440" width="150" height="40" rx="8"/>
+                            <text x="105" y="456" text-anchor="middle">Multi-Head</text>
+                            <text x="105" y="470" text-anchor="middle">Attention</text>
+                        </g>
+                        <g class="tf-block tf-norm">
+                            <rect x="30" y="408" width="150" height="24" rx="4"/>
+                            <text x="105" y="424" text-anchor="middle">Add & Norm</text>
+                        </g>
+                        <g class="tf-block tf-ff">
+                            <rect x="30" y="356" width="150" height="40" rx="8"/>
+                            <text x="105" y="380" text-anchor="middle">Feed Forward</text>
+                        </g>
+                        <g class="tf-block tf-norm">
+                            <rect x="30" y="324" width="150" height="24" rx="4"/>
+                            <text x="105" y="340" text-anchor="middle">Add & Norm</text>
+                        </g>
+                    </g>
+
+                    <!-- DECODER BLOCKS -->
+                    <g class="tf-decoder">
+                        <g class="tf-block tf-embed">
+                            <rect x="260" y="524" width="150" height="30" rx="6"/>
+                            <text x="335" y="543" text-anchor="middle">Output Embedding</text>
+                        </g>
+                        <g class="tf-pos-enc">
+                            <circle cx="335" cy="504" r="10"/>
+                            <line x1="330" y1="504" x2="340" y2="504"/>
+                            <line x1="335" y1="499" x2="335" y2="509"/>
+                        </g>
+                        <g class="tf-block tf-attention">
+                            <rect x="260" y="444" width="150" height="40" rx="8"/>
+                            <text x="335" y="460" text-anchor="middle">Masked Multi-Head</text>
+                            <text x="335" y="474" text-anchor="middle">Attention</text>
+                        </g>
+                        <g class="tf-block tf-norm">
+                            <rect x="260" y="412" width="150" height="24" rx="4"/>
+                            <text x="335" y="428" text-anchor="middle">Add & Norm</text>
+                        </g>
+                        <g class="tf-block tf-attention tf-cross">
+                            <rect x="260" y="360" width="150" height="40" rx="8"/>
+                            <text x="335" y="376" text-anchor="middle">Multi-Head</text>
+                            <text x="335" y="390" text-anchor="middle">Attention</text>
+                        </g>
+                        <g class="tf-block tf-norm">
+                            <rect x="260" y="328" width="150" height="24" rx="4"/>
+                            <text x="335" y="344" text-anchor="middle">Add & Norm</text>
+                        </g>
+                        <g class="tf-block tf-ff">
+                            <rect x="260" y="276" width="150" height="40" rx="8"/>
+                            <text x="335" y="300" text-anchor="middle">Feed Forward</text>
+                        </g>
+                        <g class="tf-block tf-norm">
+                            <rect x="260" y="244" width="150" height="24" rx="4"/>
+                            <text x="335" y="260" text-anchor="middle">Add & Norm</text>
+                        </g>
+                        <g class="tf-block tf-output">
+                            <rect x="260" y="198" width="150" height="30" rx="6"/>
+                            <text x="335" y="217" text-anchor="middle">Linear</text>
+                        </g>
+                        <g class="tf-block tf-output tf-softmax">
+                            <rect x="260" y="152" width="150" height="30" rx="6"/>
+                            <text x="335" y="171" text-anchor="middle">Softmax</text>
+                        </g>
+                    </g>
+
+                    <!-- Labels -->
+                    <text x="105" y="566" class="tf-label" text-anchor="middle">Inputs</text>
+                    <text x="335" y="566" class="tf-label" text-anchor="middle">Outputs</text>
+                    <text x="335" y="126" class="tf-label" text-anchor="middle">Output Probabilities</text>
+
+                    <!-- Animated particles -->
+                    <g class="tf-particles" filter="url(#particleGlow)">
+                        <circle r="3" class="tf-particle-enc">
+                            <animateMotion dur="3s" repeatCount="indefinite" begin="0s">
+                                <mpath href="#encPath"/>
+                            </animateMotion>
+                            <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.1;0.9;1" dur="3s" repeatCount="indefinite" begin="0s"/>
+                        </circle>
+                        <circle r="2.5" class="tf-particle-enc">
+                            <animateMotion dur="3s" repeatCount="indefinite" begin="1.5s">
+                                <mpath href="#encPath"/>
+                            </animateMotion>
+                            <animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.1;0.9;1" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+                        </circle>
+                        <circle r="3" class="tf-particle-dec">
+                            <animateMotion dur="5s" repeatCount="indefinite" begin="0.3s">
+                                <mpath href="#decPath"/>
+                            </animateMotion>
+                            <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.1;0.9;1" dur="5s" repeatCount="indefinite" begin="0.3s"/>
+                        </circle>
+                        <circle r="2.5" class="tf-particle-dec">
+                            <animateMotion dur="5s" repeatCount="indefinite" begin="2.8s">
+                                <mpath href="#decPath"/>
+                            </animateMotion>
+                            <animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.1;0.9;1" dur="5s" repeatCount="indefinite" begin="2.8s"/>
+                        </circle>
+                        <circle r="2.5" class="tf-particle-cross">
+                            <animateMotion dur="2s" repeatCount="indefinite" begin="0.5s">
+                                <mpath href="#crossPath"/>
+                            </animateMotion>
+                            <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.15;0.85;1" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                        </circle>
+                        <circle r="2" class="tf-particle-cross">
+                            <animateMotion dur="2s" repeatCount="indefinite" begin="1.5s">
+                                <mpath href="#crossPath"/>
+                            </animateMotion>
+                            <animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.15;0.85;1" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+                        </circle>
+                    </g>
+                </svg>
             </div>
         </div>
         <a href="#about" class="scroll-indicator">

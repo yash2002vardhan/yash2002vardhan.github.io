@@ -495,52 +495,176 @@ body:hover .cursor-glow {
 /* Hero Visual */
 .hero-visual {
     position: absolute;
-    right: 5%;
+    right: 3%;
     top: 50%;
     transform: translateY(-50%);
     width: 400px;
-    height: 400px;
     z-index: 1;
 }
 
-.floating-cards {
-    position: relative;
+/* ===== Transformer Architecture Diagram ===== */
+.transformer-diagram {
     width: 100%;
-    height: 100%;
+    animation: tfFadeIn 1.2s ease 0.5s both;
 }
 
-.float-card {
-    position: absolute;
-    padding: 16px 24px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 14px;
+@keyframes tfFadeIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.transformer-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* Block base styles */
+.tf-block rect {
+    stroke-width: 1.5;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tf-block text {
+    fill: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 10px;
     font-weight: 500;
-    color: var(--text-primary);
-    box-shadow: var(--card-shadow);
-    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
 }
 
-.float-card i {
-    font-size: 20px;
-    color: var(--accent-primary);
+.tf-attention rect {
+    fill: rgba(99, 102, 241, 0.1);
+    stroke: rgba(99, 102, 241, 0.5);
 }
 
-.card-1 { animation-delay: 0s; }
-.card-2 { animation-delay: 0.5s; }
-.card-3 { animation-delay: 1s; }
-.card-4 { animation-delay: 1.5s; }
-.card-5 { animation-delay: 2s; }
-.card-6 { animation-delay: 2.5s; }
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+.tf-cross rect {
+    fill: rgba(139, 92, 246, 0.12);
+    stroke: rgba(139, 92, 246, 0.5);
 }
+
+.tf-norm rect {
+    fill: rgba(99, 102, 241, 0.05);
+    stroke: rgba(99, 102, 241, 0.25);
+    stroke-width: 1;
+}
+
+.tf-norm text {
+    font-size: 8.5px;
+    font-weight: 400;
+    fill: var(--text-secondary);
+}
+
+.tf-ff rect {
+    fill: rgba(168, 85, 247, 0.1);
+    stroke: rgba(168, 85, 247, 0.5);
+}
+
+.tf-embed rect {
+    fill: rgba(99, 102, 241, 0.08);
+    stroke: rgba(99, 102, 241, 0.35);
+}
+
+.tf-output rect {
+    fill: rgba(139, 92, 246, 0.1);
+    stroke: rgba(139, 92, 246, 0.45);
+}
+
+/* Hover effects */
+.tf-attention:hover rect {
+    fill: rgba(99, 102, 241, 0.22);
+    stroke: rgba(99, 102, 241, 0.9);
+    filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.4));
+}
+
+.tf-cross:hover rect {
+    fill: rgba(139, 92, 246, 0.22);
+    stroke: rgba(139, 92, 246, 0.9);
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.4));
+}
+
+.tf-ff:hover rect {
+    fill: rgba(168, 85, 247, 0.22);
+    stroke: rgba(168, 85, 247, 0.9);
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
+}
+
+.tf-embed:hover rect,
+.tf-output:hover rect {
+    stroke: rgba(99, 102, 241, 0.8);
+    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.3));
+}
+
+/* Labels */
+.tf-label {
+    fill: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.tf-nx {
+    fill: var(--accent-primary);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Connection lines */
+.tf-conn {
+    stroke: var(--accent-primary);
+    stroke-width: 1.5;
+    stroke-opacity: 0.3;
+}
+
+.tf-cross-attn {
+    stroke: #8b5cf6;
+    stroke-width: 1.5;
+    stroke-opacity: 0.5;
+    fill: none;
+}
+
+.tf-skip {
+    stroke: var(--accent-primary);
+    stroke-width: 1;
+    stroke-opacity: 0.15;
+    stroke-dasharray: 3 3;
+    fill: none;
+}
+
+.tf-bracket {
+    stroke: var(--accent-primary);
+    stroke-width: 1;
+    stroke-opacity: 0.3;
+    fill: none;
+}
+
+/* Positional encoding ⊕ */
+.tf-pos-enc circle {
+    fill: rgba(99, 102, 241, 0.1);
+    stroke: rgba(99, 102, 241, 0.4);
+    stroke-width: 1.5;
+}
+
+.tf-pos-enc line {
+    stroke: rgba(99, 102, 241, 0.6);
+    stroke-width: 1.5;
+}
+
+/* Animated particles */
+.tf-particle-enc { fill: #6366f1; }
+.tf-particle-dec { fill: #a855f7; }
+.tf-particle-cross { fill: #8b5cf6; }
+
+/* Dark mode adjustments */
+[data-theme="dark"] .tf-attention rect { fill: rgba(99, 102, 241, 0.15); }
+[data-theme="dark"] .tf-ff rect { fill: rgba(168, 85, 247, 0.15); }
+[data-theme="dark"] .tf-cross rect { fill: rgba(139, 92, 246, 0.18); }
+[data-theme="dark"] .tf-conn { stroke-opacity: 0.4; }
+[data-theme="dark"] .tf-cross-attn { stroke-opacity: 0.6; }
+[data-theme="dark"] .tf-skip { stroke-opacity: 0.2; }
 
 /* Scroll Indicator */
 .scroll-indicator {
@@ -589,7 +713,7 @@ body:hover .cursor-glow {
 }
 
 .about-text {
-    font-size: 1.0625rem;
+    font-size: 1rem;
     color: var(--text-secondary);
 }
 
