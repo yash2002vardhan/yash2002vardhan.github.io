@@ -77,7 +77,7 @@
         </div>
         <div class="hero-visual">
             <div class="transformer-diagram" id="transformerDiagram">
-                <svg class="transformer-svg" viewBox="0 0 460 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="transformer-svg" viewBox="0 0 460 620" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <filter id="particleGlow" x="-200%" y="-200%" width="500%" height="500%">
                             <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -86,67 +86,103 @@
                                 <feMergeNode in="SourceGraphic"/>
                             </feMerge>
                         </filter>
-                        <marker id="arrowUp" markerWidth="6" markerHeight="8" refX="3" refY="0" orient="auto">
-                            <path d="M0,8 L3,0 L6,8Z" fill="#94a3b8" opacity="0.8"/>
+                        <!-- Flow arrow: right-pointing in marker space, orient=auto rotates with path -->
+                        <marker id="flowArrow" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+                            <path d="M0,0 L7,2.5 L0,5Z" fill="#94a3b8" opacity="0.8"/>
                         </marker>
-                        <marker id="arrowRight" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-                            <path d="M0,0 L8,3 L0,6Z" fill="#94a3b8" opacity="0.8"/>
-                        </marker>
-                        <marker id="skipArrow" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto">
+                        <!-- Smaller arrow for V/K/Q lines -->
+                        <marker id="smallArrow" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto">
                             <path d="M0,0 L5,2 L0,4Z" fill="#94a3b8" opacity="0.7"/>
                         </marker>
-                        <path id="encPath" d="M105,550 L105,338"/>
-                        <path id="decPath" d="M345,550 L345,148"/>
-                        <path id="crossPath" d="M180,350 C230,350 270,392 270,392"/>
+                        <!-- Animation paths -->
+                        <path id="encPath" d="M105,570 L105,338"/>
+                        <path id="decPath" d="M345,570 L345,166"/>
+                        <path id="crossPath" d="M180,348 C220,348 250,390 270,390"/>
                     </defs>
 
                     <!-- Layer background boxes -->
-                    <rect class="tf-layer-bg" x="22" y="330" width="170" height="170" rx="12"/>
-                    <rect class="tf-layer-bg" x="250" y="250" width="170" height="250" rx="12"/>
+                    <rect class="tf-layer-bg" x="22" y="330" width="170" height="178" rx="10"/>
+                    <rect class="tf-layer-bg" x="262" y="250" width="166" height="258" rx="10"/>
 
-                    <!-- Connection lines -->
+                    <!-- ===== FLOW CONNECTIONS (all with upward arrows) ===== -->
                     <g class="tf-connections">
-                        <!-- Encoder flow -->
-                        <line x1="105" y1="540" x2="105" y2="528" class="tf-conn"/>
-                        <line x1="105" y1="508" x2="105" y2="494" class="tf-conn"/>
-                        <line x1="105" y1="454" x2="105" y2="446" class="tf-conn"/>
-                        <line x1="105" y1="422" x2="105" y2="410" class="tf-conn"/>
-                        <line x1="105" y1="370" x2="105" y2="362" class="tf-conn"/>
-                        <!-- Decoder flow -->
-                        <line x1="345" y1="540" x2="345" y2="528" class="tf-conn"/>
-                        <line x1="345" y1="508" x2="345" y2="496" class="tf-conn"/>
-                        <line x1="345" y1="456" x2="345" y2="448" class="tf-conn"/>
-                        <line x1="345" y1="424" x2="345" y2="414" class="tf-conn"/>
-                        <line x1="345" y1="374" x2="345" y2="366" class="tf-conn"/>
-                        <line x1="345" y1="342" x2="345" y2="330" class="tf-conn"/>
-                        <line x1="345" y1="290" x2="345" y2="282" class="tf-conn"/>
-                        <line x1="345" y1="258" x2="345" y2="242" class="tf-conn"/>
-                        <line x1="345" y1="212" x2="345" y2="196" class="tf-conn"/>
-                        <line x1="345" y1="166" x2="345" y2="148" class="tf-conn" marker-end="url(#arrowUp)"/>
+                        <!-- ENCODER -->
+                        <line x1="105" y1="540" x2="105" y2="528" class="tf-conn" marker-end="url(#flowArrow)"/>
+                        <line x1="105" y1="508" x2="105" y2="502" class="tf-conn"/>
+                        <line x1="105" y1="454" x2="105" y2="446" class="tf-conn" marker-end="url(#flowArrow)"/>
+                        <line x1="105" y1="422" x2="105" y2="410" class="tf-conn" marker-end="url(#flowArrow)"/>
+                        <line x1="105" y1="370" x2="105" y2="362" class="tf-conn" marker-end="url(#flowArrow)"/>
+                        <!-- DECODER -->
+                        <line x1="345" y1="540" x2="345" y2="528" class="tf-conn" marker-end="url(#flowArrow)"/>
+                        <line x1="345" y1="508" x2="345" y2="502" class="tf-conn"/>
+                        <line x1="345" y1="456" x2="345" y2="448" class="tf-conn" marker-end="url(#flowArrow)"/>
+                        <line x1="345" y1="424" x2="345" y2="420" class="tf-conn"/>
+                        <line x1="345" y1="374" x2="345" y2="366" class="tf-conn" marker-end="url(#flowArrow)"/>
+                        <line x1="345" y1="342" x2="345" y2="330" class="tf-conn" marker-end="url(#flowArrow)"/>
+                        <line x1="345" y1="290" x2="345" y2="282" class="tf-conn" marker-end="url(#flowArrow)"/>
+                        <line x1="345" y1="258" x2="345" y2="242" class="tf-conn" marker-end="url(#flowArrow)"/>
+                        <line x1="345" y1="212" x2="345" y2="196" class="tf-conn" marker-end="url(#flowArrow)"/>
+                        <line x1="345" y1="166" x2="345" y2="150" class="tf-conn" marker-end="url(#flowArrow)"/>
                     </g>
 
-                    <!-- Cross-attention arrows (K, V from encoder to decoder) -->
-                    <path d="M180,350 C218,350 250,386 270,386" class="tf-cross-attn" marker-end="url(#arrowRight)"/>
-                    <path d="M180,344 C218,344 250,392 270,392" class="tf-cross-attn" marker-end="url(#arrowRight)"/>
+                    <!-- ===== V / K / Q ARROWS INTO ATTENTION BLOCKS ===== -->
+                    <g class="tf-vkq-arrows">
+                        <!-- Encoder MHA: V, K, Q from below (self-attention) -->
+                        <line x1="105" y1="502" x2="75" y2="502" class="tf-conn" stroke-opacity="0.3"/>
+                        <line x1="105" y1="502" x2="135" y2="502" class="tf-conn" stroke-opacity="0.3"/>
+                        <line x1="75" y1="502" x2="75" y2="494" class="tf-conn" marker-end="url(#smallArrow)"/>
+                        <line x1="105" y1="502" x2="105" y2="494" class="tf-conn" marker-end="url(#smallArrow)"/>
+                        <line x1="135" y1="502" x2="135" y2="494" class="tf-conn" marker-end="url(#smallArrow)"/>
+                        <text x="75" y="511" text-anchor="middle" class="tf-vkq-label">V</text>
+                        <text x="105" y="511" text-anchor="middle" class="tf-vkq-label">K</text>
+                        <text x="135" y="511" text-anchor="middle" class="tf-vkq-label">Q</text>
 
-                    <!-- Skip connections (residual) with arrowheads -->
-                    <path d="M192,494 C210,494 210,446 192,446" class="tf-skip" marker-end="url(#skipArrow)"/>
-                    <path d="M192,410 C210,410 210,362 192,362" class="tf-skip" marker-end="url(#skipArrow)"/>
-                    <path d="M420,496 C438,496 438,448 420,448" class="tf-skip" marker-end="url(#skipArrow)"/>
-                    <path d="M420,414 C438,414 438,366 420,366" class="tf-skip" marker-end="url(#skipArrow)"/>
-                    <path d="M420,330 C438,330 438,282 420,282" class="tf-skip" marker-end="url(#skipArrow)"/>
+                        <!-- Decoder Masked MHA: V, K, Q from below (self-attention) -->
+                        <line x1="345" y1="502" x2="315" y2="502" class="tf-conn" stroke-opacity="0.3"/>
+                        <line x1="345" y1="502" x2="375" y2="502" class="tf-conn" stroke-opacity="0.3"/>
+                        <line x1="315" y1="502" x2="315" y2="496" class="tf-conn" marker-end="url(#smallArrow)"/>
+                        <line x1="345" y1="502" x2="345" y2="496" class="tf-conn" marker-end="url(#smallArrow)"/>
+                        <line x1="375" y1="502" x2="375" y2="496" class="tf-conn" marker-end="url(#smallArrow)"/>
+                        <text x="315" y="511" text-anchor="middle" class="tf-vkq-label">V</text>
+                        <text x="345" y="511" text-anchor="middle" class="tf-vkq-label">K</text>
+                        <text x="375" y="511" text-anchor="middle" class="tf-vkq-label">Q</text>
 
-                    <!-- Encoder layer bracket & label -->
-                    <path d="M16,498 L8,498 L8,338 L16,338" class="tf-bracket"/>
-                    <text x="-2" y="418" class="tf-layer-label" transform="rotate(-90,-2,418)">Encoder layer</text>
-                    <text x="2" y="340" class="tf-nx">Nx</text>
+                        <!-- Decoder Cross MHA: Q from below -->
+                        <line x1="345" y1="420" x2="375" y2="420" class="tf-conn" stroke-opacity="0.3"/>
+                        <line x1="375" y1="420" x2="375" y2="414" class="tf-conn" marker-end="url(#smallArrow)"/>
+                        <text x="382" y="418" class="tf-vkq-label">Q</text>
+                    </g>
 
-                    <!-- Decoder layer bracket & label -->
-                    <path d="M426,498 L434,498 L434,258 L426,258" class="tf-bracket"/>
-                    <text x="446" y="378" class="tf-layer-label" transform="rotate(90,446,378)">Decoder layer</text>
-                    <text x="438" y="260" class="tf-nx">Nx</text>
+                    <!-- ===== CROSS-ATTENTION: V, K from encoder → decoder ===== -->
+                    <path d="M180,346 C215,346 248,388 270,388" class="tf-cross-attn" marker-end="url(#flowArrow)"/>
+                    <text x="216" y="360" class="tf-vkq-label">V</text>
+                    <path d="M180,354 C215,354 248,398 270,398" class="tf-cross-attn" marker-end="url(#flowArrow)"/>
+                    <text x="216" y="376" class="tf-vkq-label">K</text>
 
-                    <!-- ENCODER BLOCKS -->
+                    <!-- ===== SKIP / RESIDUAL CONNECTIONS ===== -->
+                    <g class="tf-skip-group">
+                        <!-- Encoder: skip around MHA to Add&Norm -->
+                        <path d="M180,494 C210,494 210,446 180,446" class="tf-skip" marker-end="url(#flowArrow)"/>
+                        <!-- Encoder: skip around FF to Add&Norm -->
+                        <path d="M180,410 C210,410 210,362 180,362" class="tf-skip" marker-end="url(#flowArrow)"/>
+                        <!-- Decoder: skip around Masked MHA -->
+                        <path d="M420,496 C450,496 450,448 420,448" class="tf-skip" marker-end="url(#flowArrow)"/>
+                        <!-- Decoder: skip around Cross MHA -->
+                        <path d="M420,414 C450,414 450,366 420,366" class="tf-skip" marker-end="url(#flowArrow)"/>
+                        <!-- Decoder: skip around FF -->
+                        <path d="M420,330 C450,330 450,282 420,282" class="tf-skip" marker-end="url(#flowArrow)"/>
+                    </g>
+
+                    <!-- ===== Nx BRACKETS & LAYER LABELS ===== -->
+                    <path d="M18,506 L10,506 L10,336 L18,336" class="tf-bracket"/>
+                    <text x="4" y="421" class="tf-layer-label" transform="rotate(-90,4,421)">Encoder layer</text>
+                    <text x="14" y="332" class="tf-nx">Nx</text>
+
+                    <path d="M430,506 L438,506 L438,256 L430,256" class="tf-bracket"/>
+                    <text x="448" y="381" class="tf-layer-label" transform="rotate(90,448,381)">Decoder layer</text>
+                    <text x="434" y="252" class="tf-nx">Nx</text>
+
+                    <!-- ===== ENCODER BLOCKS ===== -->
                     <g class="tf-encoder">
                         <g class="tf-block tf-embed">
                             <rect x="30" y="540" width="150" height="30" rx="6"/>
@@ -157,8 +193,8 @@
                             <line x1="100" y1="518" x2="110" y2="518"/>
                             <line x1="105" y1="513" x2="105" y2="523"/>
                         </g>
-                        <text x="140" y="521" class="tf-pos-label">Positional</text>
-                        <text x="140" y="529" class="tf-pos-label">Encoding</text>
+                        <text x="130" y="516" class="tf-pos-label">Positional</text>
+                        <text x="130" y="525" class="tf-pos-label">Encoding</text>
                         <g class="tf-block tf-attention">
                             <rect x="30" y="454" width="150" height="40" rx="8"/>
                             <text x="105" y="470" text-anchor="middle">Multi-Head</text>
@@ -178,7 +214,7 @@
                         </g>
                     </g>
 
-                    <!-- DECODER BLOCKS -->
+                    <!-- ===== DECODER BLOCKS ===== -->
                     <g class="tf-decoder">
                         <g class="tf-block tf-embed">
                             <rect x="270" y="540" width="150" height="30" rx="6"/>
@@ -189,8 +225,8 @@
                             <line x1="340" y1="518" x2="350" y2="518"/>
                             <line x1="345" y1="513" x2="345" y2="523"/>
                         </g>
-                        <text x="370" y="521" class="tf-pos-label">Positional</text>
-                        <text x="370" y="529" class="tf-pos-label">Encoding</text>
+                        <text x="370" y="516" class="tf-pos-label">Positional</text>
+                        <text x="370" y="525" class="tf-pos-label">Encoding</text>
                         <g class="tf-block tf-masked">
                             <rect x="270" y="456" width="150" height="40" rx="8"/>
                             <text x="345" y="472" text-anchor="middle">Masked Multi-Head</text>
@@ -227,13 +263,13 @@
                         </g>
                     </g>
 
-                    <!-- Labels -->
-                    <text x="105" y="584" class="tf-label" text-anchor="middle">Inputs</text>
-                    <text x="345" y="584" class="tf-label" text-anchor="middle">Outputs</text>
-                    <text x="345" y="593" class="tf-label" text-anchor="middle" style="font-size:7px">(Output Tokens from Previous Step)</text>
-                    <text x="345" y="140" class="tf-label" text-anchor="middle">Output Probabilities</text>
+                    <!-- ===== LABELS ===== -->
+                    <text x="105" y="586" class="tf-label" text-anchor="middle">Inputs</text>
+                    <text x="345" y="586" class="tf-label" text-anchor="middle">Outputs</text>
+                    <text x="345" y="596" class="tf-label" text-anchor="middle" style="font-size:7px">(Output Tokens from Previous Step)</text>
+                    <text x="345" y="142" class="tf-label" text-anchor="middle">Output Probabilities</text>
 
-                    <!-- Animated particles -->
+                    <!-- ===== ANIMATED PARTICLES ===== -->
                     <g class="tf-particles" filter="url(#particleGlow)">
                         <circle r="3" class="tf-particle-enc">
                             <animateMotion dur="3s" repeatCount="indefinite" begin="0s">
