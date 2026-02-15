@@ -492,245 +492,41 @@ body:hover .cursor-glow {
     margin-top: 4px;
 }
 
-/* Hero Visual */
+/* Hero Visual — Embedding Space */
 .hero-visual {
     position: absolute;
-    right: 8%;
+    right: 5%;
     top: 50%;
     transform: translateY(-50%);
-    width: 520px;
+    width: 540px;
+    height: 540px;
     z-index: 1;
+    animation: embedFadeIn 1.4s ease 0.6s both;
 }
 
-/* ===== Transformer Architecture Diagram ===== */
-.transformer-diagram {
+@keyframes embedFadeIn {
+    from { opacity: 0; transform: translateY(-50%) scale(0.92); filter: blur(6px); }
+    to { opacity: 1; transform: translateY(-50%) scale(1); filter: blur(0); }
+}
+
+#embeddingCanvas {
     width: 100%;
-    animation: tfFadeIn 1.2s ease 0.5s both;
+    height: 100%;
+    border-radius: 20px;
 }
 
-@keyframes tfFadeIn {
-    from { opacity: 0; transform: translateY(20px) scale(0.97); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.transformer-svg {
-    width: 100%;
-    height: auto;
-    overflow: visible;
-}
-
-/* Block base styles */
-.tf-block rect {
-    stroke-width: 1.5;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.tf-block text {
-    fill: var(--text-primary);
-    font-family: var(--font-primary);
+.embedding-label {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    font-family: var(--font-mono);
     font-size: 10px;
-    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    opacity: 0.4;
     pointer-events: none;
 }
-
-/* Multi-Head Attention - green */
-.tf-attention rect {
-    fill: rgba(74, 222, 128, 0.18);
-    stroke: rgba(74, 222, 128, 0.7);
-}
-
-/* Masked Multi-Head Attention - violet/pink */
-.tf-masked rect {
-    fill: rgba(192, 132, 252, 0.18);
-    stroke: rgba(192, 132, 252, 0.7);
-}
-
-/* Cross-attention in decoder - same green as regular attention */
-.tf-cross rect {
-    fill: rgba(74, 222, 128, 0.18);
-    stroke: rgba(74, 222, 128, 0.7);
-}
-
-/* Add & Norm - subtle warm grey */
-.tf-norm rect {
-    fill: rgba(203, 213, 225, 0.08);
-    stroke: rgba(148, 163, 184, 0.4);
-    stroke-width: 1;
-}
-
-.tf-norm text {
-    font-size: 8.5px;
-    font-weight: 400;
-    fill: var(--text-secondary);
-}
-
-/* Feed Forward - amber/yellow */
-.tf-ff rect {
-    fill: rgba(251, 191, 36, 0.15);
-    stroke: rgba(251, 191, 36, 0.6);
-}
-
-/* Embeddings - warm cream */
-.tf-embed rect {
-    fill: rgba(253, 224, 71, 0.1);
-    stroke: rgba(253, 224, 71, 0.45);
-}
-
-/* Linear - teal */
-.tf-linear rect {
-    fill: rgba(45, 212, 191, 0.15);
-    stroke: rgba(45, 212, 191, 0.65);
-}
-
-/* Softmax - indigo */
-.tf-softmax rect {
-    fill: rgba(129, 140, 248, 0.15);
-    stroke: rgba(129, 140, 248, 0.65);
-}
-
-/* Hover effects */
-.tf-attention:hover rect,
-.tf-cross:hover rect {
-    fill: rgba(74, 222, 128, 0.3);
-    stroke: rgba(74, 222, 128, 0.95);
-    filter: drop-shadow(0 0 12px rgba(74, 222, 128, 0.4));
-}
-
-.tf-masked:hover rect {
-    fill: rgba(192, 132, 252, 0.3);
-    stroke: rgba(192, 132, 252, 0.95);
-    filter: drop-shadow(0 0 12px rgba(192, 132, 252, 0.4));
-}
-
-.tf-ff:hover rect {
-    fill: rgba(251, 191, 36, 0.28);
-    stroke: rgba(251, 191, 36, 0.9);
-    filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.35));
-}
-
-.tf-embed:hover rect {
-    fill: rgba(253, 224, 71, 0.2);
-    stroke: rgba(253, 224, 71, 0.75);
-    filter: drop-shadow(0 0 10px rgba(253, 224, 71, 0.3));
-}
-
-.tf-linear:hover rect {
-    fill: rgba(45, 212, 191, 0.28);
-    stroke: rgba(45, 212, 191, 0.95);
-    filter: drop-shadow(0 0 12px rgba(45, 212, 191, 0.4));
-}
-
-.tf-softmax:hover rect {
-    fill: rgba(129, 140, 248, 0.28);
-    stroke: rgba(129, 140, 248, 0.95);
-    filter: drop-shadow(0 0 12px rgba(129, 140, 248, 0.4));
-}
-
-/* Layer background boxes */
-.tf-layer-bg {
-    fill: rgba(148, 163, 184, 0.03);
-    stroke: rgba(148, 163, 184, 0.12);
-    stroke-width: 1;
-}
-
-/* Labels */
-.tf-label {
-    fill: var(--text-tertiary);
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-}
-
-.tf-nx {
-    fill: var(--accent-primary);
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 700;
-}
-
-/* Connection lines */
-.tf-conn {
-    stroke: var(--text-secondary);
-    stroke-width: 1.5;
-    stroke-opacity: 0.5;
-}
-
-.tf-cross-attn {
-    stroke: rgba(148, 163, 184, 0.5);
-    stroke-width: 1.5;
-    fill: none;
-}
-
-.tf-skip {
-    stroke: var(--text-secondary);
-    stroke-width: 1.5;
-    stroke-opacity: 0.5;
-    fill: none;
-}
-
-.tf-bracket {
-    stroke: var(--text-secondary);
-    stroke-width: 1;
-    stroke-opacity: 0.25;
-    fill: none;
-}
-
-/* Positional encoding ⊕ */
-.tf-pos-enc circle {
-    fill: rgba(129, 140, 248, 0.1);
-    stroke: rgba(129, 140, 248, 0.5);
-    stroke-width: 1.5;
-}
-
-.tf-pos-enc line {
-    stroke: rgba(129, 140, 248, 0.7);
-    stroke-width: 1.5;
-}
-
-/* V/K/Q labels */
-.tf-vkq-label {
-    fill: var(--text-tertiary);
-    font-family: var(--font-mono);
-    font-size: 6.5px;
-    font-weight: 600;
-    opacity: 0.7;
-}
-
-/* Animated particles */
-.tf-particle-enc { fill: #4ade80; }
-.tf-particle-dec { fill: #c084fc; }
-.tf-particle-cross { fill: #818cf8; }
-
-/* Positional encoding label */
-.tf-pos-label {
-    fill: var(--text-tertiary);
-    font-family: var(--font-primary);
-    font-size: 7.5px;
-    font-weight: 400;
-}
-
-/* Layer label */
-.tf-layer-label {
-    fill: var(--text-tertiary);
-    font-family: var(--font-primary);
-    font-size: 9px;
-    font-weight: 500;
-}
-
-/* Light mode adjustments - pastel fills for light backgrounds */
-[data-theme="light"] .tf-attention rect,
-[data-theme="light"] .tf-cross rect { fill: rgba(74, 222, 128, 0.25); stroke: rgba(34, 160, 75, 0.7); }
-[data-theme="light"] .tf-masked rect { fill: rgba(192, 132, 252, 0.2); stroke: rgba(139, 92, 246, 0.6); }
-[data-theme="light"] .tf-ff rect { fill: rgba(251, 191, 36, 0.2); stroke: rgba(200, 150, 20, 0.6); }
-[data-theme="light"] .tf-norm rect { fill: rgba(241, 245, 249, 0.6); stroke: rgba(148, 163, 184, 0.5); }
-[data-theme="light"] .tf-embed rect { fill: rgba(254, 249, 195, 0.5); stroke: rgba(180, 160, 60, 0.5); }
-[data-theme="light"] .tf-linear rect { fill: rgba(45, 212, 191, 0.2); stroke: rgba(20, 160, 140, 0.6); }
-[data-theme="light"] .tf-softmax rect { fill: rgba(129, 140, 248, 0.2); stroke: rgba(99, 102, 241, 0.6); }
-[data-theme="light"] .tf-layer-bg { fill: rgba(241, 245, 249, 0.4); stroke: rgba(148, 163, 184, 0.2); }
-[data-theme="light"] .tf-pos-enc circle { fill: rgba(99, 102, 241, 0.1); stroke: rgba(99, 102, 241, 0.4); }
-[data-theme="light"] .tf-pos-enc line { stroke: rgba(99, 102, 241, 0.6); }
 
 /* Scroll Indicator */
 .scroll-indicator {

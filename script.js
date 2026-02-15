@@ -6,16 +6,353 @@ document.addEventListener('mousemove', (e) => {
     cursorGlow.style.top = e.clientY + 'px';
 });
 
-// ===== Transformer Diagram Parallax =====
-const transformerDiagram = document.getElementById('transformerDiagram');
+// ===== 3D Knowledge Graph Animation =====
+(function () {
+    const canvas = document.getElementById('embeddingCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
 
-if (transformerDiagram) {
-    document.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 8;
-        const y = (e.clientY / window.innerHeight - 0.5) * 8;
-        transformerDiagram.style.transform = `translate(${x}px, ${y}px)`;
+    let W = 540, H = 540;
+    const FOV = 500;
+    const SPHERE_R = 180;
+
+    function resize() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        W = rect.width;
+        H = rect.height;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // --- Node definitions ---
+    const nodeDefs = [
+        // AI/ML core — teal
+        { label: 'LLM',         cat: 0 },
+        { label: 'RAG',         cat: 0 },
+        { label: 'NLP',         cat: 0 },
+        { label: 'Embeddings',  cat: 0 },
+        { label: 'Transformers',cat: 0 },
+        { label: 'Agents',      cat: 0 },
+        { label: 'Fine-tuning', cat: 0 },
+        { label: 'Deep Learning', cat: 0 },
+        // Frameworks — green
+        { label: 'LangChain',   cat: 1 },
+        { label: 'PyTorch',     cat: 1 },
+        { label: 'FastAPI',     cat: 1 },
+        { label: 'TensorFlow',  cat: 1 },
+        { label: 'Agno',        cat: 1 },
+        { label: 'Streamlit',   cat: 1 },
+        // Infrastructure — violet
+        { label: 'AWS',         cat: 2 },
+        { label: 'Docker',      cat: 2 },
+        { label: 'Redis',       cat: 2 },
+        { label: 'CI/CD',       cat: 2 },
+        { label: 'Microservices', cat: 2 },
+        { label: 'SQS/SNS',    cat: 2 },
+        // Data — amber
+        { label: 'Milvus',      cat: 3 },
+        { label: 'FAISS',       cat: 3 },
+        { label: 'Pinecone',    cat: 3 },
+        { label: 'PostgreSQL',  cat: 3 },
+        { label: 'Vector DB',   cat: 3 },
+        // Research — rose
+        { label: 'GNN',         cat: 4 },
+        { label: 'BERT',        cat: 4 },
+        { label: 'Computer Vision', cat: 4 },
+    ];
+
+    const catColors = [
+        [6, 182, 212],    // teal
+        [74, 222, 128],   // green
+        [167, 139, 250],  // violet
+        [251, 191, 36],   // amber
+        [251, 113, 133],  // rose
+    ];
+
+    // Distribute nodes on a sphere using golden-angle spiral
+    const nodes = [];
+    const N = nodeDefs.length;
+    const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+
+    for (let i = 0; i < N; i++) {
+        const y = 1 - (i / (N - 1)) * 2;          // -1 to 1
+        const radiusAtY = Math.sqrt(1 - y * y);
+        const theta = goldenAngle * i;
+
+        nodes.push({
+            ...nodeDefs[i],
+            // Base position on sphere
+            bx: Math.cos(theta) * radiusAtY * SPHERE_R,
+            by: y * SPHERE_R,
+            bz: Math.sin(theta) * radiusAtY * SPHERE_R,
+            // Current 3D position (set each frame after rotation)
+            x3: 0, y3: 0, z3: 0,
+            // Projected 2D
+            px: 0, py: 0, scale: 1,
+            // Pulse state
+            pulseT: 0, pulsing: false,
+        });
+    }
+
+    // --- Edges: connect semantically related nodes ---
+    const edgePairs = [
+        ['LLM', 'RAG'], ['LLM', 'NLP'], ['LLM', 'Transformers'], ['LLM', 'Fine-tuning'],
+        ['LLM', 'Agents'], ['LLM', 'LangChain'],
+        ['RAG', 'Embeddings'], ['RAG', 'Vector DB'], ['RAG', 'LangChain'], ['RAG', 'Milvus'],
+        ['NLP', 'BERT'], ['NLP', 'Transformers'], ['NLP', 'Deep Learning'],
+        ['Embeddings', 'FAISS'], ['Embeddings', 'Pinecone'], ['Embeddings', 'Milvus'],
+        ['Agents', 'LangChain'], ['Agents', 'Agno'], ['Agents', 'FastAPI'],
+        ['LangChain', 'FastAPI'], ['LangChain', 'Streamlit'],
+        ['PyTorch', 'Deep Learning'], ['PyTorch', 'TensorFlow'],
+        ['Deep Learning', 'Computer Vision'], ['Deep Learning', 'GNN'], ['Deep Learning', 'BERT'],
+        ['AWS', 'Docker'], ['AWS', 'SQS/SNS'], ['AWS', 'CI/CD'], ['AWS', 'Microservices'],
+        ['Docker', 'CI/CD'], ['Docker', 'Microservices'],
+        ['Microservices', 'FastAPI'], ['Microservices', 'Redis'], ['Microservices', 'SQS/SNS'],
+        ['Milvus', 'Vector DB'], ['FAISS', 'Vector DB'], ['Pinecone', 'Vector DB'],
+        ['PostgreSQL', 'Redis'],
+        ['GNN', 'BERT'],
+        ['Streamlit', 'FastAPI'],
+        ['Fine-tuning', 'BERT'], ['Fine-tuning', 'PyTorch'],
+    ];
+
+    // Build edge index list
+    const labelToIdx = {};
+    nodes.forEach((n, i) => labelToIdx[n.label] = i);
+    const edges = edgePairs
+        .map(([a, b]) => [labelToIdx[a], labelToIdx[b]])
+        .filter(([a, b]) => a !== undefined && b !== undefined);
+
+    // --- New edge spark animation ---
+    let sparkEdge = null; // { a, b, progress, opacity }
+    let sparkTimer = 0;
+    const SPARK_INTERVAL = 4000;
+    const SPARK_DURATION = 1500;
+
+    // Pool of potential new edges (not in the permanent set)
+    const extraEdges = [
+        ['Computer Vision', 'TensorFlow'], ['GNN', 'PyTorch'], ['BERT', 'LangChain'],
+        ['Redis', 'FastAPI'], ['Agents', 'AWS'], ['RAG', 'FAISS'],
+        ['NLP', 'LLM'], ['Streamlit', 'Deep Learning'], ['Agno', 'Microservices'],
+        ['SQS/SNS', 'Redis'], ['CI/CD', 'FastAPI'], ['PostgreSQL', 'Milvus'],
+    ].map(([a, b]) => [labelToIdx[a], labelToIdx[b]])
+     .filter(([a, b]) => a !== undefined && b !== undefined);
+
+    // --- Rotation state ---
+    let rotY = 0;           // auto-rotation angle
+    let tiltX = 0.15;       // slight default tilt
+    let tiltY = 0;
+    let mouseInfluenceX = 0;
+    let mouseInfluenceY = 0;
+
+    // Mouse parallax
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseInfluenceX = ((e.clientX - rect.left) / rect.width - 0.5) * 0.4;
+        mouseInfluenceY = ((e.clientY - rect.top) / rect.height - 0.5) * 0.3;
     });
-}
+    canvas.addEventListener('mouseleave', () => {
+        mouseInfluenceX = 0;
+        mouseInfluenceY = 0;
+    });
+
+    // Random pulse timer
+    let pulseTimer = 0;
+
+    function isDark() {
+        return document.documentElement.getAttribute('data-theme') === 'dark';
+    }
+
+    function rotateY(x, y, z, angle) {
+        const c = Math.cos(angle), s = Math.sin(angle);
+        return [x * c + z * s, y, -x * s + z * c];
+    }
+
+    function rotateX(x, y, z, angle) {
+        const c = Math.cos(angle), s = Math.sin(angle);
+        return [x, y * c - z * s, y * s + z * c];
+    }
+
+    function project(x3, y3, z3) {
+        const scale = FOV / (FOV + z3);
+        return {
+            px: W / 2 + x3 * scale,
+            py: H / 2 + y3 * scale,
+            scale,
+        };
+    }
+
+    let lastTime = performance.now();
+
+    function animate(now) {
+        const dt = Math.min(now - lastTime, 50); // cap to prevent jumps
+        lastTime = now;
+        const dark = isDark();
+
+        ctx.clearRect(0, 0, W, H);
+
+        // Auto-rotate
+        rotY += 0.0003 * dt;
+
+        // Smooth mouse influence
+        tiltX += (0.15 + mouseInfluenceY - tiltX) * 0.03;
+        tiltY += (mouseInfluenceX - tiltY) * 0.03;
+
+        // Transform all nodes
+        for (const n of nodes) {
+            let [x, y, z] = rotateY(n.bx, n.by, n.bz, rotY);
+            [x, y, z] = rotateX(x, y, z, tiltX);
+            [x, y, z] = rotateY(x, y, z, tiltY);
+            n.x3 = x; n.y3 = y; n.z3 = z;
+            const p = project(x, y, z);
+            n.px = p.px; n.py = p.py; n.scale = p.scale;
+        }
+
+        // --- Draw edges (back-to-front not critical for lines, draw all) ---
+        const edgeAlphaBase = dark ? 0.18 : 0.12;
+        for (const [ai, bi] of edges) {
+            const a = nodes[ai], b = nodes[bi];
+            const avgDepth = (a.z3 + b.z3) / 2;
+            const depthFactor = (avgDepth + SPHERE_R) / (2 * SPHERE_R); // 0 (far) to 1 (near)
+            const alpha = edgeAlphaBase * (0.3 + depthFactor * 0.7);
+            const lineColor = dark ? `rgba(148,163,184,${alpha})` : `rgba(100,116,139,${alpha})`;
+
+            ctx.strokeStyle = lineColor;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.px, a.py);
+            ctx.lineTo(b.px, b.py);
+            ctx.stroke();
+        }
+
+        // --- Spark edge animation ---
+        sparkTimer += dt;
+        if (!sparkEdge && sparkTimer >= SPARK_INTERVAL && extraEdges.length > 0) {
+            const idx = Math.floor(Math.random() * extraEdges.length);
+            const [a, b] = extraEdges[idx];
+            sparkEdge = { a, b, progress: 0 };
+            sparkTimer = 0;
+        }
+
+        if (sparkEdge) {
+            sparkEdge.progress += dt / SPARK_DURATION;
+            if (sparkEdge.progress >= 1) {
+                sparkEdge = null;
+            } else {
+                const a = nodes[sparkEdge.a], b = nodes[sparkEdge.b];
+                const t = sparkEdge.progress;
+
+                // Draw the forming edge
+                const drawLen = Math.min(t * 3, 1); // edge draws in first third
+                const fadeAlpha = t > 0.6 ? 1 - (t - 0.6) / 0.4 : 1;
+                const ex = a.px + (b.px - a.px) * drawLen;
+                const ey = a.py + (b.py - a.py) * drawLen;
+
+                // Glow line
+                ctx.strokeStyle = `rgba(6,182,212,${0.08 * fadeAlpha})`;
+                ctx.lineWidth = 6;
+                ctx.beginPath();
+                ctx.moveTo(a.px, a.py);
+                ctx.lineTo(ex, ey);
+                ctx.stroke();
+
+                // Core line
+                ctx.strokeStyle = `rgba(6,182,212,${0.5 * fadeAlpha})`;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(a.px, a.py);
+                ctx.lineTo(ex, ey);
+                ctx.stroke();
+
+                // Traveling particle along the edge
+                if (drawLen >= 1) {
+                    const particleT = ((t - 0.33) / 0.67) % 1;
+                    const ppx = a.px + (b.px - a.px) * particleT;
+                    const ppy = a.py + (b.py - a.py) * particleT;
+                    const pGrad = ctx.createRadialGradient(ppx, ppy, 0, ppx, ppy, 8);
+                    pGrad.addColorStop(0, `rgba(6,182,212,${0.7 * fadeAlpha})`);
+                    pGrad.addColorStop(1, `rgba(6,182,212,0)`);
+                    ctx.fillStyle = pGrad;
+                    ctx.beginPath();
+                    ctx.arc(ppx, ppy, 8, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+        // --- Random pulse ---
+        pulseTimer += dt;
+        if (pulseTimer > 2500) {
+            pulseTimer = 0;
+            const ri = Math.floor(Math.random() * nodes.length);
+            nodes[ri].pulsing = true;
+            nodes[ri].pulseT = 0;
+        }
+
+        // --- Sort nodes by depth for back-to-front rendering ---
+        const sortedIndices = nodes.map((_, i) => i).sort((a, b) => nodes[a].z3 - nodes[b].z3);
+
+        for (const i of sortedIndices) {
+            const n = nodes[i];
+            const depthNorm = (n.z3 + SPHERE_R) / (2 * SPHERE_R); // 0=far, 1=near
+            const [r, g, b] = catColors[n.cat];
+
+            const nodeRadius = 3 + depthNorm * 4;
+            const alphaBase = dark ? (0.3 + depthNorm * 0.6) : (0.25 + depthNorm * 0.5);
+
+            // Pulse animation
+            let pulseGlow = 0;
+            if (n.pulsing) {
+                n.pulseT += dt / 1000;
+                if (n.pulseT > 1.2) { n.pulsing = false; }
+                pulseGlow = Math.sin(n.pulseT * Math.PI / 1.2) * 0.6;
+            }
+
+            const totalAlpha = Math.min(alphaBase + pulseGlow, 1);
+
+            // Outer glow
+            const glowR = nodeRadius * 4 + pulseGlow * 12;
+            const gGrad = ctx.createRadialGradient(n.px, n.py, 0, n.px, n.py, glowR);
+            gGrad.addColorStop(0, `rgba(${r},${g},${b},${totalAlpha * 0.2})`);
+            gGrad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+            ctx.fillStyle = gGrad;
+            ctx.beginPath();
+            ctx.arc(n.px, n.py, glowR, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Core node
+            ctx.fillStyle = `rgba(${r},${g},${b},${totalAlpha})`;
+            ctx.beginPath();
+            ctx.arc(n.px, n.py, nodeRadius, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Bright center
+            ctx.fillStyle = `rgba(255,255,255,${totalAlpha * 0.35})`;
+            ctx.beginPath();
+            ctx.arc(n.px, n.py, nodeRadius * 0.4, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Label (only for nodes that are near enough to be legible)
+            if (depthNorm > 0.3) {
+                const labelAlpha = (depthNorm - 0.3) / 0.7;
+                const fontSize = Math.round(8 + depthNorm * 3);
+                ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
+                ctx.textAlign = 'center';
+                ctx.fillStyle = dark
+                    ? `rgba(${r},${g},${b},${labelAlpha * 0.7})`
+                    : `rgba(${Math.max(r - 30, 0)},${Math.max(g - 30, 0)},${Math.max(b - 30, 0)},${labelAlpha * 0.6})`;
+                ctx.fillText(n.label, n.px, n.py - nodeRadius - 6);
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+})();
 
 // ===== Theme Toggle =====
 const themeToggle = document.getElementById('themeToggle');
