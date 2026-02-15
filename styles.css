@@ -534,28 +534,28 @@ body:hover .cursor-glow {
     pointer-events: none;
 }
 
-/* Attention blocks - green */
+/* Multi-Head Attention - green */
 .tf-attention rect {
-    fill: rgba(144, 238, 144, 0.25);
-    stroke: rgba(76, 175, 80, 0.6);
+    fill: rgba(74, 222, 128, 0.18);
+    stroke: rgba(74, 222, 128, 0.7);
 }
 
-/* Masked attention - purple/pink */
+/* Masked Multi-Head Attention - violet/pink */
 .tf-masked rect {
-    fill: rgba(206, 147, 216, 0.25);
-    stroke: rgba(156, 39, 176, 0.5);
+    fill: rgba(192, 132, 252, 0.18);
+    stroke: rgba(192, 132, 252, 0.7);
 }
 
-/* Cross-attention (decoder MHA) - green like regular attention */
+/* Cross-attention in decoder - same green as regular attention */
 .tf-cross rect {
-    fill: rgba(144, 238, 144, 0.25);
-    stroke: rgba(76, 175, 80, 0.6);
+    fill: rgba(74, 222, 128, 0.18);
+    stroke: rgba(74, 222, 128, 0.7);
 }
 
-/* Add & Norm - light yellow */
+/* Add & Norm - subtle warm grey */
 .tf-norm rect {
-    fill: rgba(255, 235, 150, 0.25);
-    stroke: rgba(200, 180, 80, 0.5);
+    fill: rgba(203, 213, 225, 0.08);
+    stroke: rgba(148, 163, 184, 0.4);
     stroke-width: 1;
 }
 
@@ -565,74 +565,73 @@ body:hover .cursor-glow {
     fill: var(--text-secondary);
 }
 
-/* Feed Forward - yellow/orange */
+/* Feed Forward - amber/yellow */
 .tf-ff rect {
-    fill: rgba(255, 224, 130, 0.3);
-    stroke: rgba(200, 160, 40, 0.5);
+    fill: rgba(251, 191, 36, 0.15);
+    stroke: rgba(251, 191, 36, 0.6);
 }
 
-/* Embeddings - cream */
+/* Embeddings - warm cream */
 .tf-embed rect {
-    fill: rgba(255, 248, 200, 0.3);
-    stroke: rgba(180, 170, 100, 0.5);
+    fill: rgba(253, 224, 71, 0.1);
+    stroke: rgba(253, 224, 71, 0.45);
 }
 
 /* Linear - teal */
 .tf-linear rect {
-    fill: rgba(128, 203, 196, 0.3);
-    stroke: rgba(0, 150, 136, 0.6);
+    fill: rgba(45, 212, 191, 0.15);
+    stroke: rgba(45, 212, 191, 0.65);
 }
 
-/* Softmax - lavender */
+/* Softmax - indigo */
 .tf-softmax rect {
-    fill: rgba(179, 157, 219, 0.3);
-    stroke: rgba(103, 58, 183, 0.5);
+    fill: rgba(129, 140, 248, 0.15);
+    stroke: rgba(129, 140, 248, 0.65);
 }
 
 /* Hover effects */
 .tf-attention:hover rect,
 .tf-cross:hover rect {
-    fill: rgba(144, 238, 144, 0.4);
-    stroke: rgba(76, 175, 80, 0.9);
-    filter: drop-shadow(0 0 10px rgba(76, 175, 80, 0.3));
+    fill: rgba(74, 222, 128, 0.3);
+    stroke: rgba(74, 222, 128, 0.95);
+    filter: drop-shadow(0 0 12px rgba(74, 222, 128, 0.4));
 }
 
 .tf-masked:hover rect {
-    fill: rgba(206, 147, 216, 0.4);
-    stroke: rgba(156, 39, 176, 0.8);
-    filter: drop-shadow(0 0 10px rgba(156, 39, 176, 0.3));
+    fill: rgba(192, 132, 252, 0.3);
+    stroke: rgba(192, 132, 252, 0.95);
+    filter: drop-shadow(0 0 12px rgba(192, 132, 252, 0.4));
 }
 
 .tf-ff:hover rect {
-    fill: rgba(255, 224, 130, 0.45);
-    stroke: rgba(200, 160, 40, 0.8);
-    filter: drop-shadow(0 0 10px rgba(200, 160, 40, 0.3));
+    fill: rgba(251, 191, 36, 0.28);
+    stroke: rgba(251, 191, 36, 0.9);
+    filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.35));
 }
 
 .tf-embed:hover rect {
-    stroke: rgba(180, 170, 100, 0.8);
-    filter: drop-shadow(0 0 8px rgba(180, 170, 100, 0.3));
+    fill: rgba(253, 224, 71, 0.2);
+    stroke: rgba(253, 224, 71, 0.75);
+    filter: drop-shadow(0 0 10px rgba(253, 224, 71, 0.3));
 }
 
 .tf-linear:hover rect {
-    fill: rgba(128, 203, 196, 0.45);
-    stroke: rgba(0, 150, 136, 0.9);
-    filter: drop-shadow(0 0 10px rgba(0, 150, 136, 0.3));
+    fill: rgba(45, 212, 191, 0.28);
+    stroke: rgba(45, 212, 191, 0.95);
+    filter: drop-shadow(0 0 12px rgba(45, 212, 191, 0.4));
 }
 
 .tf-softmax:hover rect {
-    fill: rgba(179, 157, 219, 0.45);
-    stroke: rgba(103, 58, 183, 0.8);
-    filter: drop-shadow(0 0 10px rgba(103, 58, 183, 0.3));
+    fill: rgba(129, 140, 248, 0.28);
+    stroke: rgba(129, 140, 248, 0.95);
+    filter: drop-shadow(0 0 12px rgba(129, 140, 248, 0.4));
 }
 
 /* Layer background boxes */
 .tf-layer-bg {
-    rx: 12;
-    fill: rgba(76, 175, 80, 0.04);
-    stroke: rgba(76, 175, 80, 0.15);
-    stroke-width: 1.5;
-    stroke-dasharray: none;
+    fill: rgba(148, 163, 184, 0.03);
+    stroke: rgba(148, 163, 184, 0.12);
+    stroke-width: 1;
 }
 
 /* Labels */
@@ -653,48 +652,47 @@ body:hover .cursor-glow {
 
 /* Connection lines */
 .tf-conn {
-    stroke: var(--accent-primary);
+    stroke: var(--text-secondary);
     stroke-width: 1.5;
-    stroke-opacity: 0.3;
+    stroke-opacity: 0.5;
 }
 
 .tf-cross-attn {
-    stroke: #0ea5e9;
+    stroke: rgba(148, 163, 184, 0.5);
     stroke-width: 1.5;
-    stroke-opacity: 0.5;
     fill: none;
 }
 
 .tf-skip {
-    stroke: var(--text-primary);
-    stroke-width: 1.2;
-    stroke-opacity: 0.35;
+    stroke: var(--text-secondary);
+    stroke-width: 1;
+    stroke-opacity: 0.4;
     fill: none;
 }
 
 .tf-bracket {
-    stroke: var(--accent-primary);
+    stroke: var(--text-secondary);
     stroke-width: 1;
-    stroke-opacity: 0.3;
+    stroke-opacity: 0.25;
     fill: none;
 }
 
 /* Positional encoding ⊕ */
 .tf-pos-enc circle {
-    fill: rgba(6, 182, 212, 0.1);
-    stroke: rgba(6, 182, 212, 0.4);
+    fill: rgba(129, 140, 248, 0.1);
+    stroke: rgba(129, 140, 248, 0.5);
     stroke-width: 1.5;
 }
 
 .tf-pos-enc line {
-    stroke: rgba(6, 182, 212, 0.6);
+    stroke: rgba(129, 140, 248, 0.7);
     stroke-width: 1.5;
 }
 
 /* Animated particles */
-.tf-particle-enc { fill: #06b6d4; }
-.tf-particle-dec { fill: #38bdf8; }
-.tf-particle-cross { fill: #0ea5e9; }
+.tf-particle-enc { fill: #4ade80; }
+.tf-particle-dec { fill: #c084fc; }
+.tf-particle-cross { fill: #818cf8; }
 
 /* Positional encoding label */
 .tf-pos-label {
@@ -706,25 +704,24 @@ body:hover .cursor-glow {
 
 /* Layer label */
 .tf-layer-label {
-    fill: var(--text-secondary);
+    fill: var(--text-tertiary);
     font-family: var(--font-primary);
     font-size: 9px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
-/* Dark mode adjustments */
-[data-theme="dark"] .tf-attention rect,
-[data-theme="dark"] .tf-cross rect { fill: rgba(144, 238, 144, 0.12); }
-[data-theme="dark"] .tf-masked rect { fill: rgba(206, 147, 216, 0.15); }
-[data-theme="dark"] .tf-ff rect { fill: rgba(255, 224, 130, 0.12); }
-[data-theme="dark"] .tf-norm rect { fill: rgba(255, 235, 150, 0.1); }
-[data-theme="dark"] .tf-embed rect { fill: rgba(255, 248, 200, 0.1); }
-[data-theme="dark"] .tf-linear rect { fill: rgba(128, 203, 196, 0.15); }
-[data-theme="dark"] .tf-softmax rect { fill: rgba(179, 157, 219, 0.15); }
-[data-theme="dark"] .tf-layer-bg { fill: rgba(76, 175, 80, 0.03); stroke: rgba(76, 175, 80, 0.1); }
-[data-theme="dark"] .tf-conn { stroke-opacity: 0.4; }
-[data-theme="dark"] .tf-cross-attn { stroke-opacity: 0.6; }
-[data-theme="dark"] .tf-skip { stroke-opacity: 0.25; }
+/* Light mode adjustments - pastel fills for light backgrounds */
+[data-theme="light"] .tf-attention rect,
+[data-theme="light"] .tf-cross rect { fill: rgba(74, 222, 128, 0.25); stroke: rgba(34, 160, 75, 0.7); }
+[data-theme="light"] .tf-masked rect { fill: rgba(192, 132, 252, 0.2); stroke: rgba(139, 92, 246, 0.6); }
+[data-theme="light"] .tf-ff rect { fill: rgba(251, 191, 36, 0.2); stroke: rgba(200, 150, 20, 0.6); }
+[data-theme="light"] .tf-norm rect { fill: rgba(241, 245, 249, 0.6); stroke: rgba(148, 163, 184, 0.5); }
+[data-theme="light"] .tf-embed rect { fill: rgba(254, 249, 195, 0.5); stroke: rgba(180, 160, 60, 0.5); }
+[data-theme="light"] .tf-linear rect { fill: rgba(45, 212, 191, 0.2); stroke: rgba(20, 160, 140, 0.6); }
+[data-theme="light"] .tf-softmax rect { fill: rgba(129, 140, 248, 0.2); stroke: rgba(99, 102, 241, 0.6); }
+[data-theme="light"] .tf-layer-bg { fill: rgba(241, 245, 249, 0.4); stroke: rgba(148, 163, 184, 0.2); }
+[data-theme="light"] .tf-pos-enc circle { fill: rgba(99, 102, 241, 0.1); stroke: rgba(99, 102, 241, 0.4); }
+[data-theme="light"] .tf-pos-enc line { stroke: rgba(99, 102, 241, 0.6); }
 
 /* Scroll Indicator */
 .scroll-indicator {
