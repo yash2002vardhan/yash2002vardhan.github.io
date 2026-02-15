@@ -77,16 +77,8 @@
         </div>
         <div class="hero-visual">
             <div class="transformer-diagram" id="transformerDiagram">
-                <svg class="transformer-svg" viewBox="0 0 440 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="transformer-svg" viewBox="0 0 460 600" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <linearGradient id="encGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#6366f1"/>
-                            <stop offset="100%" stop-color="#8b5cf6"/>
-                        </linearGradient>
-                        <linearGradient id="decGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#8b5cf6"/>
-                            <stop offset="100%" stop-color="#a855f7"/>
-                        </linearGradient>
                         <filter id="particleGlow" x="-200%" y="-200%" width="500%" height="500%">
                             <feGaussianBlur stdDeviation="4" result="blur"/>
                             <feMerge>
@@ -94,136 +86,152 @@
                                 <feMergeNode in="SourceGraphic"/>
                             </feMerge>
                         </filter>
-                        <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-                            <path d="M0,0 L8,3 L0,6Z" fill="#8b5cf6" opacity="0.6"/>
-                        </marker>
                         <marker id="arrowUp" markerWidth="6" markerHeight="8" refX="3" refY="0" orient="auto">
-                            <path d="M0,8 L3,0 L6,8Z" fill="#a855f7" opacity="0.6"/>
+                            <path d="M0,8 L3,0 L6,8Z" fill="var(--text-primary)" opacity="0.5"/>
                         </marker>
-                        <path id="encPath" d="M105,536 L105,324"/>
-                        <path id="decPath" d="M335,536 L335,140"/>
-                        <path id="crossPath" d="M180,336 C220,336 240,380 260,380"/>
+                        <marker id="arrowRight" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                            <path d="M0,0 L8,3 L0,6Z" fill="var(--text-primary)" opacity="0.5"/>
+                        </marker>
+                        <marker id="skipArrow" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto">
+                            <path d="M0,0 L5,2 L0,4Z" fill="var(--text-primary)" opacity="0.4"/>
+                        </marker>
+                        <path id="encPath" d="M105,550 L105,338"/>
+                        <path id="decPath" d="M345,550 L345,148"/>
+                        <path id="crossPath" d="M180,350 C230,350 270,392 270,392"/>
                     </defs>
 
-                    <!-- Subtle background glow -->
-                    <ellipse cx="220" cy="420" rx="180" ry="220" fill="url(#encGrad)" opacity="0.04"/>
+                    <!-- Layer background boxes -->
+                    <rect class="tf-layer-bg" x="22" y="330" width="170" height="170" rx="12"/>
+                    <rect class="tf-layer-bg" x="250" y="250" width="170" height="250" rx="12"/>
 
                     <!-- Connection lines -->
                     <g class="tf-connections">
-                        <line x1="105" y1="524" x2="105" y2="514" class="tf-conn"/>
-                        <line x1="105" y1="494" x2="105" y2="480" class="tf-conn"/>
-                        <line x1="105" y1="440" x2="105" y2="432" class="tf-conn"/>
-                        <line x1="105" y1="408" x2="105" y2="396" class="tf-conn"/>
-                        <line x1="105" y1="356" x2="105" y2="348" class="tf-conn"/>
-                        <line x1="335" y1="524" x2="335" y2="514" class="tf-conn"/>
-                        <line x1="335" y1="494" x2="335" y2="484" class="tf-conn"/>
-                        <line x1="335" y1="444" x2="335" y2="436" class="tf-conn"/>
-                        <line x1="335" y1="412" x2="335" y2="400" class="tf-conn"/>
-                        <line x1="335" y1="360" x2="335" y2="352" class="tf-conn"/>
-                        <line x1="335" y1="328" x2="335" y2="316" class="tf-conn"/>
-                        <line x1="335" y1="276" x2="335" y2="268" class="tf-conn"/>
-                        <line x1="335" y1="244" x2="335" y2="228" class="tf-conn"/>
-                        <line x1="335" y1="198" x2="335" y2="182" class="tf-conn"/>
-                        <line x1="335" y1="152" x2="335" y2="136" class="tf-conn" marker-end="url(#arrowUp)"/>
+                        <!-- Encoder flow -->
+                        <line x1="105" y1="540" x2="105" y2="528" class="tf-conn"/>
+                        <line x1="105" y1="508" x2="105" y2="494" class="tf-conn"/>
+                        <line x1="105" y1="454" x2="105" y2="446" class="tf-conn"/>
+                        <line x1="105" y1="422" x2="105" y2="410" class="tf-conn"/>
+                        <line x1="105" y1="370" x2="105" y2="362" class="tf-conn"/>
+                        <!-- Decoder flow -->
+                        <line x1="345" y1="540" x2="345" y2="528" class="tf-conn"/>
+                        <line x1="345" y1="508" x2="345" y2="496" class="tf-conn"/>
+                        <line x1="345" y1="456" x2="345" y2="448" class="tf-conn"/>
+                        <line x1="345" y1="424" x2="345" y2="414" class="tf-conn"/>
+                        <line x1="345" y1="374" x2="345" y2="366" class="tf-conn"/>
+                        <line x1="345" y1="342" x2="345" y2="330" class="tf-conn"/>
+                        <line x1="345" y1="290" x2="345" y2="282" class="tf-conn"/>
+                        <line x1="345" y1="258" x2="345" y2="242" class="tf-conn"/>
+                        <line x1="345" y1="212" x2="345" y2="196" class="tf-conn"/>
+                        <line x1="345" y1="166" x2="345" y2="148" class="tf-conn" marker-end="url(#arrowUp)"/>
                     </g>
 
-                    <!-- Cross-attention arrow -->
-                    <path d="M180,336 C220,336 240,380 260,380" class="tf-cross-attn" marker-end="url(#arrow)"/>
+                    <!-- Cross-attention arrows (K, V from encoder to decoder) -->
+                    <path d="M180,350 C218,350 250,386 270,386" class="tf-cross-attn" marker-end="url(#arrowRight)"/>
+                    <path d="M180,344 C218,344 250,392 270,392" class="tf-cross-attn" marker-end="url(#arrowRight)"/>
 
-                    <!-- Skip connections (residual) -->
-                    <path d="M180,480 C196,480 196,432 180,432" class="tf-skip"/>
-                    <path d="M180,396 C196,396 196,348 180,348" class="tf-skip"/>
-                    <path d="M410,484 C426,484 426,436 410,436" class="tf-skip"/>
-                    <path d="M410,400 C426,400 426,352 410,352" class="tf-skip"/>
-                    <path d="M410,316 C426,316 426,268 410,268" class="tf-skip"/>
+                    <!-- Skip connections (residual) with arrowheads -->
+                    <path d="M192,496 C210,496 210,446 192,446" class="tf-skip" marker-end="url(#skipArrow)"/>
+                    <path d="M192,410 C210,410 210,362 192,362" class="tf-skip" marker-end="url(#skipArrow)"/>
+                    <path d="M420,496 C438,496 438,448 420,448" class="tf-skip" marker-end="url(#skipArrow)"/>
+                    <path d="M420,414 C438,414 438,366 420,366" class="tf-skip" marker-end="url(#skipArrow)"/>
+                    <path d="M420,330 C438,330 438,282 420,282" class="tf-skip" marker-end="url(#skipArrow)"/>
 
-                    <!-- Nx brackets -->
-                    <path d="M24,480 L16,480 L16,324 L24,324" class="tf-bracket"/>
-                    <text x="8" y="402" class="tf-nx" transform="rotate(-90,8,402)">Nx</text>
-                    <path d="M416,484 L424,484 L424,244 L416,244" class="tf-bracket"/>
-                    <text x="432" y="364" class="tf-nx" transform="rotate(90,432,364)">Nx</text>
+                    <!-- Encoder layer bracket & label -->
+                    <path d="M16,498 L8,498 L8,338 L16,338" class="tf-bracket"/>
+                    <text x="-2" y="418" class="tf-layer-label" transform="rotate(-90,-2,418)">Encoder layer</text>
+                    <text x="2" y="340" class="tf-nx">Nx</text>
+
+                    <!-- Decoder layer bracket & label -->
+                    <path d="M426,498 L434,498 L434,258 L426,258" class="tf-bracket"/>
+                    <text x="446" y="378" class="tf-layer-label" transform="rotate(90,446,378)">Decoder layer</text>
+                    <text x="438" y="260" class="tf-nx">Nx</text>
 
                     <!-- ENCODER BLOCKS -->
                     <g class="tf-encoder">
                         <g class="tf-block tf-embed">
-                            <rect x="30" y="524" width="150" height="30" rx="6"/>
-                            <text x="105" y="543" text-anchor="middle">Input Embedding</text>
+                            <rect x="30" y="540" width="150" height="30" rx="6"/>
+                            <text x="105" y="559" text-anchor="middle">Input Embedding</text>
                         </g>
                         <g class="tf-pos-enc">
-                            <circle cx="105" cy="504" r="10"/>
-                            <line x1="100" y1="504" x2="110" y2="504"/>
-                            <line x1="105" y1="499" x2="105" y2="509"/>
+                            <circle cx="105" cy="518" r="10"/>
+                            <line x1="100" y1="518" x2="110" y2="518"/>
+                            <line x1="105" y1="513" x2="105" y2="523"/>
                         </g>
+                        <text x="140" y="521" class="tf-pos-label">Positional</text>
+                        <text x="140" y="529" class="tf-pos-label">Encoding</text>
                         <g class="tf-block tf-attention">
-                            <rect x="30" y="440" width="150" height="40" rx="8"/>
-                            <text x="105" y="456" text-anchor="middle">Multi-Head</text>
-                            <text x="105" y="470" text-anchor="middle">Attention</text>
+                            <rect x="30" y="454" width="150" height="40" rx="8"/>
+                            <text x="105" y="470" text-anchor="middle">Multi-Head</text>
+                            <text x="105" y="484" text-anchor="middle">Attention</text>
                         </g>
                         <g class="tf-block tf-norm">
-                            <rect x="30" y="408" width="150" height="24" rx="4"/>
-                            <text x="105" y="424" text-anchor="middle">Add & Norm</text>
+                            <rect x="30" y="422" width="150" height="24" rx="4"/>
+                            <text x="105" y="438" text-anchor="middle">Add & Norm</text>
                         </g>
                         <g class="tf-block tf-ff">
-                            <rect x="30" y="356" width="150" height="40" rx="8"/>
-                            <text x="105" y="380" text-anchor="middle">Feed Forward</text>
+                            <rect x="30" y="370" width="150" height="40" rx="8"/>
+                            <text x="105" y="394" text-anchor="middle">Feed Forward</text>
                         </g>
                         <g class="tf-block tf-norm">
-                            <rect x="30" y="324" width="150" height="24" rx="4"/>
-                            <text x="105" y="340" text-anchor="middle">Add & Norm</text>
+                            <rect x="30" y="338" width="150" height="24" rx="4"/>
+                            <text x="105" y="354" text-anchor="middle">Add & Norm</text>
                         </g>
                     </g>
 
                     <!-- DECODER BLOCKS -->
                     <g class="tf-decoder">
                         <g class="tf-block tf-embed">
-                            <rect x="260" y="524" width="150" height="30" rx="6"/>
-                            <text x="335" y="543" text-anchor="middle">Output Embedding</text>
+                            <rect x="270" y="540" width="150" height="30" rx="6"/>
+                            <text x="345" y="559" text-anchor="middle">Output Embedding</text>
                         </g>
                         <g class="tf-pos-enc">
-                            <circle cx="335" cy="504" r="10"/>
-                            <line x1="330" y1="504" x2="340" y2="504"/>
-                            <line x1="335" y1="499" x2="335" y2="509"/>
+                            <circle cx="345" cy="518" r="10"/>
+                            <line x1="340" y1="518" x2="350" y2="518"/>
+                            <line x1="345" y1="513" x2="345" y2="523"/>
                         </g>
-                        <g class="tf-block tf-attention">
-                            <rect x="260" y="444" width="150" height="40" rx="8"/>
-                            <text x="335" y="460" text-anchor="middle">Masked Multi-Head</text>
-                            <text x="335" y="474" text-anchor="middle">Attention</text>
+                        <text x="370" y="521" class="tf-pos-label">Positional</text>
+                        <text x="370" y="529" class="tf-pos-label">Encoding</text>
+                        <g class="tf-block tf-masked">
+                            <rect x="270" y="456" width="150" height="40" rx="8"/>
+                            <text x="345" y="472" text-anchor="middle">Masked Multi-Head</text>
+                            <text x="345" y="486" text-anchor="middle">Attention</text>
                         </g>
                         <g class="tf-block tf-norm">
-                            <rect x="260" y="412" width="150" height="24" rx="4"/>
-                            <text x="335" y="428" text-anchor="middle">Add & Norm</text>
+                            <rect x="270" y="424" width="150" height="24" rx="4"/>
+                            <text x="345" y="440" text-anchor="middle">Add & Norm</text>
                         </g>
                         <g class="tf-block tf-attention tf-cross">
-                            <rect x="260" y="360" width="150" height="40" rx="8"/>
-                            <text x="335" y="376" text-anchor="middle">Multi-Head</text>
-                            <text x="335" y="390" text-anchor="middle">Attention</text>
+                            <rect x="270" y="374" width="150" height="40" rx="8"/>
+                            <text x="345" y="390" text-anchor="middle">Multi-Head</text>
+                            <text x="345" y="404" text-anchor="middle">Attention</text>
                         </g>
                         <g class="tf-block tf-norm">
-                            <rect x="260" y="328" width="150" height="24" rx="4"/>
-                            <text x="335" y="344" text-anchor="middle">Add & Norm</text>
+                            <rect x="270" y="342" width="150" height="24" rx="4"/>
+                            <text x="345" y="358" text-anchor="middle">Add & Norm</text>
                         </g>
                         <g class="tf-block tf-ff">
-                            <rect x="260" y="276" width="150" height="40" rx="8"/>
-                            <text x="335" y="300" text-anchor="middle">Feed Forward</text>
+                            <rect x="270" y="290" width="150" height="40" rx="8"/>
+                            <text x="345" y="314" text-anchor="middle">Feed Forward</text>
                         </g>
                         <g class="tf-block tf-norm">
-                            <rect x="260" y="244" width="150" height="24" rx="4"/>
-                            <text x="335" y="260" text-anchor="middle">Add & Norm</text>
+                            <rect x="270" y="258" width="150" height="24" rx="4"/>
+                            <text x="345" y="274" text-anchor="middle">Add & Norm</text>
                         </g>
-                        <g class="tf-block tf-output">
-                            <rect x="260" y="198" width="150" height="30" rx="6"/>
-                            <text x="335" y="217" text-anchor="middle">Linear</text>
+                        <g class="tf-block tf-linear">
+                            <rect x="270" y="212" width="150" height="30" rx="6"/>
+                            <text x="345" y="231" text-anchor="middle">Linear</text>
                         </g>
-                        <g class="tf-block tf-output tf-softmax">
-                            <rect x="260" y="152" width="150" height="30" rx="6"/>
-                            <text x="335" y="171" text-anchor="middle">Softmax</text>
+                        <g class="tf-block tf-softmax">
+                            <rect x="270" y="166" width="150" height="30" rx="6"/>
+                            <text x="345" y="185" text-anchor="middle">Softmax</text>
                         </g>
                     </g>
 
                     <!-- Labels -->
-                    <text x="105" y="566" class="tf-label" text-anchor="middle">Inputs</text>
-                    <text x="335" y="566" class="tf-label" text-anchor="middle">Outputs</text>
-                    <text x="335" y="126" class="tf-label" text-anchor="middle">Output Probabilities</text>
+                    <text x="105" y="584" class="tf-label" text-anchor="middle">Inputs</text>
+                    <text x="345" y="584" class="tf-label" text-anchor="middle">Outputs</text>
+                    <text x="345" y="593" class="tf-label" text-anchor="middle" style="font-size:7px">(Output Tokens from Previous Step)</text>
+                    <text x="345" y="140" class="tf-label" text-anchor="middle">Output Probabilities</text>
 
                     <!-- Animated particles -->
                     <g class="tf-particles" filter="url(#particleGlow)">

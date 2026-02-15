@@ -7,13 +7,13 @@
     --text-primary: #1a1a2e;
     --text-secondary: #4a4a68;
     --text-tertiary: #6b6b8a;
-    --accent-primary: #6366f1;
-    --accent-secondary: #8b5cf6;
-    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+    --accent-primary: #06b6d4;
+    --accent-secondary: #0ea5e9;
+    --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 50%, #38bdf8 100%);
     --border-color: #e5e5e5;
     --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    --glow-color: rgba(99, 102, 241, 0.15);
+    --glow-color: rgba(6, 182, 212, 0.15);
 
     /* Spacing */
     --section-padding: 100px 0;
@@ -46,7 +46,7 @@
     --border-color: #27272a;
     --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
     --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
-    --glow-color: rgba(99, 102, 241, 0.25);
+    --glow-color: rgba(6, 182, 212, 0.25);
 }
 
 /* ===== Base Styles ===== */
@@ -434,12 +434,12 @@ body:hover .cursor-glow {
 .btn-primary {
     background: var(--accent-gradient);
     color: white;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5);
 }
 
 .btn-primary i {
@@ -534,19 +534,28 @@ body:hover .cursor-glow {
     pointer-events: none;
 }
 
+/* Attention blocks - green */
 .tf-attention rect {
-    fill: rgba(99, 102, 241, 0.1);
-    stroke: rgba(99, 102, 241, 0.5);
+    fill: rgba(144, 238, 144, 0.25);
+    stroke: rgba(76, 175, 80, 0.6);
 }
 
+/* Masked attention - purple/pink */
+.tf-masked rect {
+    fill: rgba(206, 147, 216, 0.25);
+    stroke: rgba(156, 39, 176, 0.5);
+}
+
+/* Cross-attention (decoder MHA) - green like regular attention */
 .tf-cross rect {
-    fill: rgba(139, 92, 246, 0.12);
-    stroke: rgba(139, 92, 246, 0.5);
+    fill: rgba(144, 238, 144, 0.25);
+    stroke: rgba(76, 175, 80, 0.6);
 }
 
+/* Add & Norm - light yellow */
 .tf-norm rect {
-    fill: rgba(99, 102, 241, 0.05);
-    stroke: rgba(99, 102, 241, 0.25);
+    fill: rgba(255, 235, 150, 0.25);
+    stroke: rgba(200, 180, 80, 0.5);
     stroke-width: 1;
 }
 
@@ -556,44 +565,74 @@ body:hover .cursor-glow {
     fill: var(--text-secondary);
 }
 
+/* Feed Forward - yellow/orange */
 .tf-ff rect {
-    fill: rgba(168, 85, 247, 0.1);
-    stroke: rgba(168, 85, 247, 0.5);
+    fill: rgba(255, 224, 130, 0.3);
+    stroke: rgba(200, 160, 40, 0.5);
 }
 
+/* Embeddings - cream */
 .tf-embed rect {
-    fill: rgba(99, 102, 241, 0.08);
-    stroke: rgba(99, 102, 241, 0.35);
+    fill: rgba(255, 248, 200, 0.3);
+    stroke: rgba(180, 170, 100, 0.5);
 }
 
-.tf-output rect {
-    fill: rgba(139, 92, 246, 0.1);
-    stroke: rgba(139, 92, 246, 0.45);
+/* Linear - teal */
+.tf-linear rect {
+    fill: rgba(128, 203, 196, 0.3);
+    stroke: rgba(0, 150, 136, 0.6);
+}
+
+/* Softmax - lavender */
+.tf-softmax rect {
+    fill: rgba(179, 157, 219, 0.3);
+    stroke: rgba(103, 58, 183, 0.5);
 }
 
 /* Hover effects */
-.tf-attention:hover rect {
-    fill: rgba(99, 102, 241, 0.22);
-    stroke: rgba(99, 102, 241, 0.9);
-    filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.4));
+.tf-attention:hover rect,
+.tf-cross:hover rect {
+    fill: rgba(144, 238, 144, 0.4);
+    stroke: rgba(76, 175, 80, 0.9);
+    filter: drop-shadow(0 0 10px rgba(76, 175, 80, 0.3));
 }
 
-.tf-cross:hover rect {
-    fill: rgba(139, 92, 246, 0.22);
-    stroke: rgba(139, 92, 246, 0.9);
-    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.4));
+.tf-masked:hover rect {
+    fill: rgba(206, 147, 216, 0.4);
+    stroke: rgba(156, 39, 176, 0.8);
+    filter: drop-shadow(0 0 10px rgba(156, 39, 176, 0.3));
 }
 
 .tf-ff:hover rect {
-    fill: rgba(168, 85, 247, 0.22);
-    stroke: rgba(168, 85, 247, 0.9);
-    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
+    fill: rgba(255, 224, 130, 0.45);
+    stroke: rgba(200, 160, 40, 0.8);
+    filter: drop-shadow(0 0 10px rgba(200, 160, 40, 0.3));
 }
 
-.tf-embed:hover rect,
-.tf-output:hover rect {
-    stroke: rgba(99, 102, 241, 0.8);
-    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.3));
+.tf-embed:hover rect {
+    stroke: rgba(180, 170, 100, 0.8);
+    filter: drop-shadow(0 0 8px rgba(180, 170, 100, 0.3));
+}
+
+.tf-linear:hover rect {
+    fill: rgba(128, 203, 196, 0.45);
+    stroke: rgba(0, 150, 136, 0.9);
+    filter: drop-shadow(0 0 10px rgba(0, 150, 136, 0.3));
+}
+
+.tf-softmax:hover rect {
+    fill: rgba(179, 157, 219, 0.45);
+    stroke: rgba(103, 58, 183, 0.8);
+    filter: drop-shadow(0 0 10px rgba(103, 58, 183, 0.3));
+}
+
+/* Layer background boxes */
+.tf-layer-bg {
+    rx: 12;
+    fill: rgba(76, 175, 80, 0.04);
+    stroke: rgba(76, 175, 80, 0.15);
+    stroke-width: 1.5;
+    stroke-dasharray: none;
 }
 
 /* Labels */
@@ -620,17 +659,16 @@ body:hover .cursor-glow {
 }
 
 .tf-cross-attn {
-    stroke: #8b5cf6;
+    stroke: #0ea5e9;
     stroke-width: 1.5;
     stroke-opacity: 0.5;
     fill: none;
 }
 
 .tf-skip {
-    stroke: var(--accent-primary);
-    stroke-width: 1;
-    stroke-opacity: 0.15;
-    stroke-dasharray: 3 3;
+    stroke: var(--text-primary);
+    stroke-width: 1.2;
+    stroke-opacity: 0.35;
     fill: none;
 }
 
@@ -643,28 +681,50 @@ body:hover .cursor-glow {
 
 /* Positional encoding ⊕ */
 .tf-pos-enc circle {
-    fill: rgba(99, 102, 241, 0.1);
-    stroke: rgba(99, 102, 241, 0.4);
+    fill: rgba(6, 182, 212, 0.1);
+    stroke: rgba(6, 182, 212, 0.4);
     stroke-width: 1.5;
 }
 
 .tf-pos-enc line {
-    stroke: rgba(99, 102, 241, 0.6);
+    stroke: rgba(6, 182, 212, 0.6);
     stroke-width: 1.5;
 }
 
 /* Animated particles */
-.tf-particle-enc { fill: #6366f1; }
-.tf-particle-dec { fill: #a855f7; }
-.tf-particle-cross { fill: #8b5cf6; }
+.tf-particle-enc { fill: #06b6d4; }
+.tf-particle-dec { fill: #38bdf8; }
+.tf-particle-cross { fill: #0ea5e9; }
+
+/* Positional encoding label */
+.tf-pos-label {
+    fill: var(--text-tertiary);
+    font-family: var(--font-primary);
+    font-size: 7.5px;
+    font-weight: 400;
+}
+
+/* Layer label */
+.tf-layer-label {
+    fill: var(--text-secondary);
+    font-family: var(--font-primary);
+    font-size: 9px;
+    font-weight: 600;
+}
 
 /* Dark mode adjustments */
-[data-theme="dark"] .tf-attention rect { fill: rgba(99, 102, 241, 0.15); }
-[data-theme="dark"] .tf-ff rect { fill: rgba(168, 85, 247, 0.15); }
-[data-theme="dark"] .tf-cross rect { fill: rgba(139, 92, 246, 0.18); }
+[data-theme="dark"] .tf-attention rect,
+[data-theme="dark"] .tf-cross rect { fill: rgba(144, 238, 144, 0.12); }
+[data-theme="dark"] .tf-masked rect { fill: rgba(206, 147, 216, 0.15); }
+[data-theme="dark"] .tf-ff rect { fill: rgba(255, 224, 130, 0.12); }
+[data-theme="dark"] .tf-norm rect { fill: rgba(255, 235, 150, 0.1); }
+[data-theme="dark"] .tf-embed rect { fill: rgba(255, 248, 200, 0.1); }
+[data-theme="dark"] .tf-linear rect { fill: rgba(128, 203, 196, 0.15); }
+[data-theme="dark"] .tf-softmax rect { fill: rgba(179, 157, 219, 0.15); }
+[data-theme="dark"] .tf-layer-bg { fill: rgba(76, 175, 80, 0.03); stroke: rgba(76, 175, 80, 0.1); }
 [data-theme="dark"] .tf-conn { stroke-opacity: 0.4; }
 [data-theme="dark"] .tf-cross-attn { stroke-opacity: 0.6; }
-[data-theme="dark"] .tf-skip { stroke-opacity: 0.2; }
+[data-theme="dark"] .tf-skip { stroke-opacity: 0.25; }
 
 /* Scroll Indicator */
 .scroll-indicator {
@@ -1140,7 +1200,7 @@ body:hover .cursor-glow {
 }
 
 .achievement-card.highlight {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
     border-color: var(--accent-primary);
 }
 

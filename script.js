@@ -318,9 +318,9 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ===== Console Easter Egg =====
-console.log('%c Welcome to my portfolio! ', 'background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; font-size: 16px; padding: 10px 20px; border-radius: 8px;');
-console.log('%c Built with vanilla HTML, CSS & JS ', 'color: #6366f1; font-size: 12px;');
-console.log('%c Press "T" to toggle dark mode! ', 'color: #8b5cf6; font-size: 12px;');
+console.log('%c Welcome to my portfolio! ', 'background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%); color: white; font-size: 16px; padding: 10px 20px; border-radius: 8px;');
+console.log('%c Built with vanilla HTML, CSS & JS ', 'color: #06b6d4; font-size: 12px;');
+console.log('%c Press "T" to toggle dark mode! ', 'color: #0ea5e9; font-size: 12px;');
 
 // ===== Performance: Lazy load images if any =====
 if ('IntersectionObserver' in window) {
