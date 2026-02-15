@@ -66,9 +66,9 @@ document.addEventListener('mousemove', (e) => {
     ];
 
     const catColors = [
-        [6, 182, 212],    // teal
+        [14, 165, 160],   // teal-jade (AI/ML — brand accent)
         [74, 222, 128],   // green
-        [167, 139, 250],  // violet
+        [167, 139, 250],  // violet (Infra)
         [251, 191, 36],   // amber
         [251, 113, 133],  // rose
     ];
@@ -252,7 +252,7 @@ document.addEventListener('mousemove', (e) => {
                 const ey = a.py + (b.py - a.py) * drawLen;
 
                 // Glow line
-                ctx.strokeStyle = `rgba(6,182,212,${0.08 * fadeAlpha})`;
+                ctx.strokeStyle = `rgba(14,165,160,${0.08 * fadeAlpha})`;
                 ctx.lineWidth = 6;
                 ctx.beginPath();
                 ctx.moveTo(a.px, a.py);
@@ -260,7 +260,7 @@ document.addEventListener('mousemove', (e) => {
                 ctx.stroke();
 
                 // Core line
-                ctx.strokeStyle = `rgba(6,182,212,${0.5 * fadeAlpha})`;
+                ctx.strokeStyle = `rgba(14,165,160,${0.5 * fadeAlpha})`;
                 ctx.lineWidth = 1.5;
                 ctx.beginPath();
                 ctx.moveTo(a.px, a.py);
@@ -273,8 +273,8 @@ document.addEventListener('mousemove', (e) => {
                     const ppx = a.px + (b.px - a.px) * particleT;
                     const ppy = a.py + (b.py - a.py) * particleT;
                     const pGrad = ctx.createRadialGradient(ppx, ppy, 0, ppx, ppy, 8);
-                    pGrad.addColorStop(0, `rgba(6,182,212,${0.7 * fadeAlpha})`);
-                    pGrad.addColorStop(1, `rgba(6,182,212,0)`);
+                    pGrad.addColorStop(0, `rgba(14,165,160,${0.7 * fadeAlpha})`);
+                    pGrad.addColorStop(1, `rgba(14,165,160,0)`);
                     ctx.fillStyle = pGrad;
                     ctx.beginPath();
                     ctx.arc(ppx, ppy, 8, 0, Math.PI * 2);
@@ -655,9 +655,9 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ===== Console Easter Egg =====
-console.log('%c Welcome to my portfolio! ', 'background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%); color: white; font-size: 16px; padding: 10px 20px; border-radius: 8px;');
-console.log('%c Built with vanilla HTML, CSS & JS ', 'color: #06b6d4; font-size: 12px;');
-console.log('%c Press "T" to toggle dark mode! ', 'color: #0ea5e9; font-size: 12px;');
+console.log('%c Welcome to my portfolio! ', 'background: linear-gradient(135deg, #0F766E 0%, #0EA5A0 100%); color: white; font-size: 16px; padding: 10px 20px; border-radius: 8px;');
+console.log('%c Built with vanilla HTML, CSS & JS ', 'color: #0EA5A0; font-size: 12px;');
+console.log('%c Press "T" to toggle dark mode! ', 'color: #14B8A6; font-size: 12px;');
 
 // ===== Performance: Lazy load images if any =====
 if ('IntersectionObserver' in window) {
