@@ -829,11 +829,12 @@ body:hover .cursor-glow {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 32px;
 }
 
 .project-card {
+    grid-column: span 2;
     background: var(--bg-primary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
@@ -844,6 +845,10 @@ body:hover .cursor-glow {
 .project-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--card-shadow-hover);
+}
+
+.project-card:nth-child(4) {
+    grid-column: 2 / span 2;
 }
 
 .project-card.featured {
@@ -1271,6 +1276,15 @@ body:hover .cursor-glow {
     .about-content {
         grid-template-columns: 1fr;
         gap: 40px;
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-card,
+    .project-card:nth-child(4) {
+        grid-column: auto;
     }
 
     .project-card.featured {
