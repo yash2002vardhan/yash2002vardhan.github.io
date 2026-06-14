@@ -1,63 +1,49 @@
-# Yashvardhan Goel - Personal Portfolio
+# Yashvardhan Goel · Personal Website
 
-A modern, responsive personal portfolio website showcasing my experience, projects, and achievements as an AI/ML Engineer.
+A single-page personal site built in the spirit of an Apple product page: refined
+minimalism, generous whitespace, large editorial typography, and smooth scroll-driven
+reveals. No build step, no dependencies. Just open `index.html`.
 
-**Live at:** [yash2002vardhan.github.io](https://yash2002vardhan.github.io)
+## Stack
+- Plain HTML + CSS + vanilla JS (zero frameworks, zero build)
+- Fonts via Google Fonts: **Hanken Grotesk** (UI), **Instrument Serif** (editorial accents), **JetBrains Mono** (labels)
+- Motion driven by `IntersectionObserver`; everything degrades gracefully and respects `prefers-reduced-motion`
 
-## Features
-
-- **Modern Design** - Clean, professional look with smooth animations
-- **Dark/Light Mode** - Toggle between themes (press 'T' or click the moon/sun icon)
-- **Fully Responsive** - Works seamlessly on desktop, tablet, and mobile
-- **Interactive Elements** - Typing animation, counter animations, card hover effects
-- **Performance Optimized** - Pure HTML, CSS, and JavaScript - no frameworks needed
-- **Cursor Glow Effect** - Subtle glow that follows mouse movement
-
-## Sections
-
-- **Hero** - Introduction with typing animation and key stats
-- **About** - Background, education, and technical skills
-- **Experience** - Professional timeline with detailed role descriptions
-- **Projects** - Featured work including research and personal projects
-- **Achievements** - Awards, scholarships, and certifications
-- **Contact** - Contact information and social links
-
-## Tech Stack
-
-- HTML5
-- CSS3 (Custom properties, Grid, Flexbox, Animations)
-- Vanilla JavaScript (ES6+)
-- Font Awesome Icons
-- Google Fonts (Inter, JetBrains Mono)
-
-## Local Development
-
-Simply open `index.html` in your browser, or use a local server:
-
-```bash
-# Using Python
-python -m http.server 8000
-
-# Using Node.js (npx)
-npx serve
-
-# Using PHP
-php -S localhost:8000
+## Files
+```
+index.html    content + structure
+styles.css    design system + layout + responsive
+script.js     scroll reveals, count-up stats, nav, card spotlight
 ```
 
-Then visit `http://localhost:8000`
+## Run locally
+Open the file directly:
+```
+open index.html
+```
+Or serve it (nicer for relative links):
+```
+python3 -m http.server 8000   # then visit http://localhost:8000
+```
 
-## Deployment
+## Deploy to GitHub Pages
+Copy these files into your `yash2002vardhan.github.io` repo root, commit, and push.
+The site goes live at https://yash2002vardhan.github.io/.
 
-This site is deployed automatically via GitHub Pages. Any push to the `main` branch will trigger a deployment.
+## Links
+All content is pulled from your resume. Live links:
 
-## Connect with Me
+| Where | Value |
+|-------|-------|
+| Email | `yashvardhan090202@gmail.com` |
+| Phone | `+91 93107 20186` |
+| LinkedIn | `linkedin.com/in/yashvardhangoel02` |
+| TL;DAI | Google Play Store listing |
+| GitHub | `github.com/yash2002vardhan` |
 
-- **Email:** f20201377p@alumni.bits-pilani.ac.in
-- **LinkedIn:** [linkedin.com/in/yashvardhangoel02](https://www.linkedin.com/in/yashvardhangoel02/)
-- **GitHub:** [github.com/yash2002vardhan](https://github.com/yash2002vardhan)
-- **Twitter:** [@goel_2002yash](https://x.com/goel_2002yash)
+The project cards currently point at your GitHub profile. Point each one at its
+specific repo if you'd like deep links.
 
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
+## Easy tweaks
+- **Accent color:** change `--accent` in `styles.css` (`:root`)
+- **Add a photo:** the design is intentionally text-forward; an avatar can slot into the hero or about section
