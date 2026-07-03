@@ -281,6 +281,34 @@ code { font-family: var(--mono); font-size: .85em; background: rgba(0,0,0,.05); 
 .card__link:hover svg { transform: translate(2px, -2px); }
 
 /* =========================================================
+   CONTENT / YOUTUBE
+   ========================================================= */
+.content__cta { margin-top: 28px; }
+
+.yt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.yt-card {
+  display: flex; flex-direction: column; gap: 12px;
+  transition: transform .35s var(--ease);
+}
+.yt-card:hover { transform: translateY(-5px); }
+.yt-card__thumb {
+  position: relative; aspect-ratio: 16 / 9; border-radius: var(--r); overflow: hidden;
+  background: var(--hairline-2); border: 1px solid var(--hairline);
+}
+.yt-card__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
+.yt-card:hover .yt-card__thumb img { transform: scale(1.06); }
+.yt-card__play {
+  position: absolute; inset: 0; margin: auto; width: 46px; height: 46px;
+  display: grid; place-items: center; border-radius: 50%;
+  background: rgba(29,29,31,.55); color: #fff; backdrop-filter: blur(2px);
+  opacity: 0; transform: scale(.85); transition: opacity .3s var(--ease), transform .3s var(--ease), background .3s var(--ease);
+}
+.yt-card__play svg { transform: translateX(1px); }
+.yt-card:hover .yt-card__play { opacity: 1; transform: scale(1); background: #FF0000; }
+.yt-card__title { font-size: 15.5px; font-weight: 600; letter-spacing: -.01em; line-height: 1.35; color: var(--ink); }
+.yt-card:hover .yt-card__title { color: #FF0000; }
+
+/* =========================================================
    RESEARCH / AWARDS
    ========================================================= */
 .awards { display: grid; gap: 0; }
@@ -362,6 +390,7 @@ code { font-family: var(--mono); font-size: .85em; background: rgba(0,0,0,.05); 
   .split > .section__head { position: static; margin-bottom: 8px; }
   .cards { grid-template-columns: 1fr; }
   .card, .card--feature { grid-column: 1 / -1; }
+  .yt-grid { grid-template-columns: repeat(2, 1fr); }
   .skills__cols { gap: 32px; }
 }
 
