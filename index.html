@@ -157,7 +157,7 @@
             </div>
             <div class="role__main">
               <h3 class="role__title">Co-Founder &amp; CTO</h3>
-              <p class="role__org">Virel</p>
+              <p class="role__org"><a href="https://usevirel.com" target="_blank" rel="noopener">Virel</a></p>
               <ul class="role__points">
                 <li>Built an AI-powered <strong>content intelligence platform</strong> for creators that analyzes competitor videos to surface the hooks, formats, pacing and patterns that actually work.</li>
                 <li>Turned those insights into creator-ready scripts in <strong>90+ languages</strong>.</li>
@@ -242,6 +242,31 @@
         </div>
 
         <div class="cards">
+          <!-- quant_cliff -->
+          <article class="card card--feature reveal">
+            <div class="card__top">
+              <span class="card__tag">Benchmark · Quantization</span>
+              <span class="card__year">2026</span>
+            </div>
+            <h3 class="card__title">quant_cliff</h3>
+            <p class="card__desc">
+              A study of how agentic tool use degrades under quantization: 18 configs, two Qwen3
+              sizes, 193 tasks, with schema validity, tool selection and argument correctness each
+              scored deterministically and no LLM judge anywhere. The finding is that the cliff is
+              <em>model-dependent, not precision-dependent</em>. At Q3_K_M the 1.7B loses 23.8 points
+              of task success while the 4B moves 0.5, yet perplexity reports the same 21% degradation
+              for both. Domain-matched imatrix calibration wins 18.7 of those points back at zero
+              size cost.
+            </p>
+            <ul class="card__chips">
+              <li>Quantization</li><li>Tool Use</li><li>Evaluation</li>
+            </ul>
+            <a class="card__link" href="https://github.com/yash2002vardhan/quant_cliff" target="_blank" rel="noopener">
+              View on GitHub
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </article>
+
           <!-- JANUS -->
           <article class="card card--feature reveal">
             <div class="card__top">
@@ -281,7 +306,7 @@
             <ul class="card__chips">
               <li>Model Context Protocol</li><li>Concurrency</li><li>Multi-agent</li>
             </ul>
-            <a class="card__link" href="https://github.com/yash2002vardhan" target="_blank" rel="noopener">
+            <a class="card__link" href="https://github.com/yash2002vardhan/handoff" target="_blank" rel="noopener">
               View on GitHub
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
             </a>

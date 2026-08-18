@@ -234,6 +234,8 @@ code { font-family: var(--mono); font-size: .85em; background: rgba(0,0,0,.05); 
 .role__loc { font-size: 13.5px; color: var(--faint); }
 .role__title { font-size: clamp(21px, 2.6vw, 28px); font-weight: 700; letter-spacing: -.02em; }
 .role__org { font-size: 15px; color: var(--accent); font-weight: 600; margin-top: 4px; margin-bottom: 18px; }
+.role__org a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgba(0,102,255,.32); transition: text-decoration-color .3s var(--ease); }
+.role__org a:hover { text-decoration-color: var(--accent); }
 .role__points { display: grid; gap: 12px; }
 .role__points li { position: relative; padding-left: 22px; font-size: 16px; color: var(--ink-soft); line-height: 1.55; max-width: 64ch; }
 .role__points li::before { content: ""; position: absolute; left: 0; top: 11px; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--accent); }
