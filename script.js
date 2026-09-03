@@ -122,6 +122,64 @@
     sections.forEach((s) => navObserver.observe(s));
   }
 
+  /* ---- GitHub contributions ----
+     Data is scraped from the public profile by a third-party service, so private
+     commits are never included and a fetch failure must stay invisible: the block
+     ships hidden and is only revealed once real data has rendered. */
+  const contrib = document.getElementById("contrib");
+  if (contrib) {
+    const GH_USER = "yash2002vardhan";
+    const grid = document.getElementById("contribGrid");
+    const countEl = document.getElementById("contribCount");
+    const monthsEl = document.getElementById("contribMonths");
+
+    const renderContrib = (days, total) => {
+      // Pad the front so the first column starts on Sunday, matching GitHub's layout.
+      const lead = new Date(days[0].date + "T00:00:00").getDay();
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < lead; i++) {
+        const pad = document.createElement("i");
+        pad.className = "contrib__cell";
+        pad.style.visibility = "hidden";
+        frag.appendChild(pad);
+      }
+      days.forEach((d) => {
+        const cell = document.createElement("i");
+        cell.className = "contrib__cell";
+        cell.dataset.level = String(d.level);
+        cell.title = `${d.count} contribution${d.count === 1 ? "" : "s"} on ${d.date}`;
+        frag.appendChild(cell);
+      });
+      grid.appendChild(frag);
+
+      countEl.textContent = total.toLocaleString();
+
+      const fmt = new Intl.DateTimeFormat(undefined, { month: "short", year: "numeric" });
+      const first = new Date(days[0].date + "T00:00:00");
+      const last = new Date(days[days.length - 1].date + "T00:00:00");
+      monthsEl.textContent = `${fmt.format(first)} — ${fmt.format(last)}`;
+
+      contrib.hidden = false;
+    };
+
+    fetch(`https://github-contributions-api.jogruber.de/v4/${GH_USER}?y=last`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        const days = Array.isArray(data.contributions) ? data.contributions : [];
+        if (!days.length) return;
+        const total =
+          (data.total && (data.total.lastYear ?? Object.values(data.total)[0])) ||
+          days.reduce((sum, d) => sum + d.count, 0);
+        renderContrib(days, total);
+      })
+      .catch(() => {
+        /* Service unavailable — leave the section hidden. */
+      });
+  }
+
   /* ---- Card pointer spotlight (dark project cards) ---- */
   if (!reduceMotion && window.matchMedia("(pointer:fine)").matches) {
     document.querySelectorAll(".card").forEach((card) => {
