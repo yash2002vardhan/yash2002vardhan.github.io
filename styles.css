@@ -210,7 +210,6 @@ code { font-family: var(--mono); font-size: .85em; background: rgba(0,0,0,.05); 
 /* =========================================================
    ABOUT
    ========================================================= */
-.about__lead { font-size: clamp(24px, 3.4vw, 38px); font-weight: 600; letter-spacing: -.025em; line-height: 1.2; color: var(--ink); margin-bottom: 28px; }
 .about__body p { font-size: 17.5px; color: var(--ink-soft); margin-bottom: 20px; max-width: 60ch; }
 .about__body strong { font-weight: 700; color: var(--ink); }
 
