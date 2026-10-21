@@ -18,6 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add("js")</script>
   <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22 font-family=%22sans-serif%22 font-weight=%22bold%22&gt;Y&lt;/text&gt;&lt;/svg&gt;" />
 </head>
 <body>
@@ -447,20 +448,15 @@
           </a>
         </div>
 
-        <div class="blog-list">
-          <a class="blog-card reveal" href="https://frenzyscholar.substack.com/p/the-ai-saw-something-we-couldnt" target="_blank" rel="noopener">
-            <div class="blog-card__thumb">
-              <img src="https://substackcdn.com/image/fetch/w_800,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fab8f1b0d-6e8f-4b61-b0bb-519f47282298_1458x972.png" alt="" loading="lazy" />
-            </div>
-            <div class="blog-card__body">
-              <span class="blog-card__date">Oct 2026</span>
-              <h3 class="blog-card__title">The AI Saw Something We Couldn't</h3>
-              <p class="blog-card__desc">We tried to fool TypeSafe's decision AI with misleading words. It resisted the obvious trick, but nearly invisible text still influenced its confidence.</p>
-              <span class="blog-card__link">
-                Read post
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-              </span>
-            </div>
+        <div class="feed">
+          <div class="blog-list" data-feed="blogs" data-limit="3">
+            <noscript>
+              <p class="feed__fallback">The latest posts appear here with JavaScript on. You can also <a href="https://substack.com/@frenzyscholar" target="_blank" rel="noopener">read them all on Substack</a>.</p>
+            </noscript>
+          </div>
+          <a class="btn btn--ghost feed__more" href="blogs/" data-feed-more="blogs" hidden>
+            View all posts
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
       </div>
@@ -483,101 +479,15 @@
           </a>
         </div>
 
-        <div class="yt-grid">
-          <a class="yt-card reveal" href="https://www.youtube.com/shorts/uehAfYJwlEg" target="_blank" rel="noopener">
-            <div class="yt-card__thumb">
-              <img src="https://i2.ytimg.com/vi/uehAfYJwlEg/hqdefault.jpg" alt="" loading="lazy" />
-              <span class="yt-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <h3 class="yt-card__title">Why Launching Was the Easy Part</h3>
-          </a>
-
-          <a class="yt-card reveal" data-delay="1" href="https://www.youtube.com/shorts/BYTVeL9ddx0" target="_blank" rel="noopener">
-            <div class="yt-card__thumb">
-              <img src="https://i3.ytimg.com/vi/BYTVeL9ddx0/hqdefault.jpg" alt="" loading="lazy" />
-              <span class="yt-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <h3 class="yt-card__title">Launching Forefetch: Anticipatory Memory for AI Agents</h3>
-          </a>
-
-          <a class="yt-card reveal" data-delay="2" href="https://www.youtube.com/shorts/GPQYJ1JND5E" target="_blank" rel="noopener">
-            <div class="yt-card__thumb">
-              <img src="https://i4.ytimg.com/vi/GPQYJ1JND5E/hqdefault.jpg" alt="" loading="lazy" />
-              <span class="yt-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <h3 class="yt-card__title">I Dogfooded My AI Memory System</h3>
-          </a>
-
-          <a class="yt-card reveal" href="https://www.youtube.com/shorts/UR0KmUGsTkU" target="_blank" rel="noopener">
-            <div class="yt-card__thumb">
-              <img src="https://i2.ytimg.com/vi/UR0KmUGsTkU/hqdefault.jpg" alt="" loading="lazy" />
-              <span class="yt-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <h3 class="yt-card__title">I Thought My AI Prediction Model Was Broken</h3>
-          </a>
-
-          <a class="yt-card reveal" data-delay="1" href="https://www.youtube.com/shorts/qE4ha32_BVY" target="_blank" rel="noopener">
-            <div class="yt-card__thumb">
-              <img src="https://i2.ytimg.com/vi/qE4ha32_BVY/hqdefault.jpg" alt="" loading="lazy" />
-              <span class="yt-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <h3 class="yt-card__title">I Couldn't Find a Benchmark, So I Built JANUS</h3>
-          </a>
-
-          <a class="yt-card reveal" data-delay="2" href="https://www.youtube.com/shorts/r2VIWVhuB-M" target="_blank" rel="noopener">
-            <div class="yt-card__thumb">
-              <img src="https://i3.ytimg.com/vi/r2VIWVhuB-M/hqdefault.jpg" alt="" loading="lazy" />
-              <span class="yt-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <h3 class="yt-card__title">Judging AI's Next Useful Step</h3>
-          </a>
-
-          <a class="yt-card reveal" href="https://www.youtube.com/shorts/-dZBzk8oggM" target="_blank" rel="noopener">
-            <div class="yt-card__thumb">
-              <img src="https://i2.ytimg.com/vi/-dZBzk8oggM/hqdefault.jpg" alt="" loading="lazy" />
-              <span class="yt-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <h3 class="yt-card__title">This AI Memory System Is 900x Faster</h3>
-          </a>
-
-          <a class="yt-card reveal" data-delay="1" href="https://www.youtube.com/shorts/bgEc9LTxx9w" target="_blank" rel="noopener">
-            <div class="yt-card__thumb">
-              <img src="https://i3.ytimg.com/vi/bgEc9LTxx9w/hqdefault.jpg" alt="" loading="lazy" />
-              <span class="yt-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <h3 class="yt-card__title">I Copied Human Memory Consolidation. It Got Worse.</h3>
-          </a>
-
-          <a class="yt-card reveal" data-delay="2" href="https://www.youtube.com/shorts/EPQEHmxzr0E" target="_blank" rel="noopener">
-            <div class="yt-card__thumb">
-              <img src="https://i2.ytimg.com/vi/EPQEHmxzr0E/hqdefault.jpg" alt="" loading="lazy" />
-              <span class="yt-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <h3 class="yt-card__title">I Tested a Brain-Inspired Memory System Against RAG</h3>
-          </a>
-
-          <a class="yt-card reveal" href="https://www.youtube.com/shorts/Boh2j3pnhPY" target="_blank" rel="noopener">
-            <div class="yt-card__thumb">
-              <img src="https://i3.ytimg.com/vi/Boh2j3pnhPY/hqdefault.jpg" alt="" loading="lazy" />
-              <span class="yt-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <h3 class="yt-card__title">What If AI Agents Need Multiple Memory Systems?</h3>
-          </a>
-
-          <a class="yt-card reveal" data-delay="1" href="https://www.youtube.com/shorts/zF9zpYoFbeQ" target="_blank" rel="noopener">
-            <div class="yt-card__thumb">
-              <img src="https://i3.ytimg.com/vi/zF9zpYoFbeQ/hqdefault.jpg" alt="" loading="lazy" />
-              <span class="yt-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <h3 class="yt-card__title">Are AI Memory Systems Thinking Too Late?</h3>
-          </a>
-
-          <a class="yt-card reveal" data-delay="2" href="https://www.youtube.com/shorts/svdupBwqRV0" target="_blank" rel="noopener">
-            <div class="yt-card__thumb">
-              <img src="https://i4.ytimg.com/vi/svdupBwqRV0/hqdefault.jpg" alt="" loading="lazy" />
-              <span class="yt-card__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <h3 class="yt-card__title">I Think AI Agents Have a Memory Problem</h3>
+        <div class="feed">
+          <div class="yt-grid" data-feed="videos" data-limit="6">
+            <noscript>
+              <p class="feed__fallback">The latest videos appear here with JavaScript on. You can also <a href="https://youtube.com/@frenzyscholar" target="_blank" rel="noopener">watch them all on YouTube</a>.</p>
+            </noscript>
+          </div>
+          <a class="btn btn--ghost feed__more" href="youtube/" data-feed-more="videos" hidden>
+            View all videos
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
       </div>
@@ -700,6 +610,7 @@
     </div>
   </footer>
 
+  <script src="content.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

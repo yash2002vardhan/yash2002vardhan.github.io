@@ -41,6 +41,56 @@
     );
   }
 
+  /* ---- Blog and video lists (data in content.js) ----
+     Rendered before the reveal observer below collects .reveal elements. */
+  const content = window.SITE_CONTENT || {};
+  const esc = (str) =>
+    String(str).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const ICON_OUT = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
+  const ICON_PLAY = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+  const monthFmt = new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
+  const fmtMonth = (iso) => {
+    const d = new Date(iso + "T00:00:00Z");
+    return isNaN(d) ? "" : monthFmt.format(d);
+  };
+
+  const cardTemplates = {
+    blogs: (p, delay) => `
+      <a class="blog-card reveal" data-delay="${delay}" href="${esc(p.url)}" target="_blank" rel="noopener">
+        <div class="blog-card__thumb"><img src="${esc(p.thumb)}" alt="" loading="lazy" /></div>
+        <div class="blog-card__body">
+          <span class="blog-card__date">${esc(fmtMonth(p.date))}</span>
+          <h3 class="blog-card__title">${esc(p.title)}</h3>
+          <p class="blog-card__desc">${esc(p.desc)}</p>
+          <span class="blog-card__link">Read post ${ICON_OUT}</span>
+        </div>
+      </a>`,
+    videos: (v, delay) => `
+      <a class="yt-card reveal" data-delay="${delay}" href="${esc(v.url)}" target="_blank" rel="noopener">
+        <div class="yt-card__thumb">
+          <img src="${esc(v.thumb)}" alt="" loading="lazy" />
+          <span class="yt-card__play" aria-hidden="true">${ICON_PLAY}</span>
+        </div>
+        <h3 class="yt-card__title">${esc(v.title)}</h3>
+      </a>`,
+  };
+
+  // A bad entry in content.js must not throw here: that would stop the reveal
+  // setup below and leave the whole page hidden.
+  document.querySelectorAll("[data-feed]").forEach((list) => {
+    const key = list.dataset.feed;
+    const items = Array.isArray(content[key]) ? content[key] : [];
+    const limit = parseInt(list.dataset.limit, 10) || items.length;
+    try {
+      list.innerHTML = items.slice(0, limit).map((item, i) => cardTemplates[key](item, i % 3)).join("");
+    } catch (err) {
+      list.innerHTML = "";
+      console.error(`Could not render "${key}" from content.js`, err);
+    }
+    const more = document.querySelector(`[data-feed-more="${key}"]`);
+    if (more) more.hidden = items.length <= limit;
+  });
+
   /* ---- Reveal on scroll ---- */
   const reveals = document.querySelectorAll(".reveal");
   if (reduceMotion || !("IntersectionObserver" in window)) {
@@ -100,7 +150,7 @@
   }
 
   /* ---- Active section in nav ---- */
-  const navLinks = Array.from(document.querySelectorAll(".nav__links a"));
+  const navLinks = Array.from(document.querySelectorAll('.nav__links a[href^="#"]'));
   const sections = navLinks
     .map((a) => document.querySelector(a.getAttribute("href")))
     .filter(Boolean);

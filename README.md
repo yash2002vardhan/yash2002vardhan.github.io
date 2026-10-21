@@ -11,17 +11,22 @@ reveals. No build step, no dependencies. Just open `index.html`.
 
 ## Files
 ```
-index.html    content + structure
-styles.css    design system + layout + responsive
-script.js     scroll reveals, count-up stats, nav, card spotlight
+index.html          content + structure
+blogs/index.html    full blog list  (yash2002vardhan.github.io/blogs)
+youtube/index.html  full video list (yash2002vardhan.github.io/youtube)
+content.js          blog posts + videos, shared by all three pages
+styles.css          design system + layout + responsive
+script.js           blog/video cards, scroll reveals, count-up stats, nav, card spotlight
 ```
 
+## Adding a blog post or video
+Add an entry at the **top** of the `blogs` or `videos` list in `content.js`
+(newest first). The homepage shows the latest 3 posts and 6 videos, and shows a
+"View all" link once there are more; the `/blogs` and `/youtube` pages show
+everything. Blog dates are `YYYY-MM-DD`.
+
 ## Run locally
-Open the file directly:
-```
-open index.html
-```
-Or serve it (nicer for relative links):
+Serve it, so the `/blogs` and `/youtube` links resolve:
 ```
 python3 -m http.server 8000   # then visit http://localhost:8000
 ```
