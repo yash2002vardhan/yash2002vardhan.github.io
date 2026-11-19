@@ -7,6 +7,13 @@
 window.SITE_CONTENT = {
   blogs: [
     {
+      title: "Can an AI plant a backdoor inside another AI?",
+      url: "https://frenzyscholar.substack.com/p/can-an-ai-plant-a-backdoor-inside",
+      thumb: "https://substackcdn.com/image/fetch/w_800,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7df74b11-eed8-4e12-9c5d-4f102adb80d1_1500x1000.png",
+      date: "2026-11-19",
+      desc: "We let one AI edit another model's weights by hand and hide a backdoor that only triggers on a certain topic. It worked, and the harder-than-expected part was not the editing."
+    },
+    {
       title: "When AI judges AI, what sways the verdict?",
       url: "https://frenzyscholar.substack.com/p/when-ai-judges-ai-what-sways-the",
       thumb: "https://substackcdn.com/image/fetch/w_800,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ffc341028-7dc3-407b-b0d7-97fd77cddfba_1458x972.png",
